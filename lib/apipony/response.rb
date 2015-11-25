@@ -1,0 +1,9 @@
+class Apipony::Response < Apipony::Base
+  attr_accessor :status, :headers, :body
+
+  def initialize(status, &block)
+    @status = status
+
+    instance_eval(&block)
+  end
+end

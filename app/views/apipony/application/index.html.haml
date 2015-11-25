@@ -8,5 +8,15 @@
           %span.method{ :class => endpoint.method }<
             = endpoint.method
           = endpoint.url
-        .description
-          = endpoint.description
+          - if endpoint.description
+            %span.description
+              &mdash;
+              = endpoint.description
+        - if endpoint.response
+          .response
+            %h3
+              Response:
+              = endpoint.response.status
+            - if endpoint.response.headers
+              %pre
+                = endpoint.response.headers
