@@ -1,0 +1,9 @@
+- @documentation.sections.each do |section|
+  %div
+    = section.title
+  %div
+    - section.endpoints.each do |endpoint|
+      %div
+        = endpoint.url
+      %div
+        = endpoint.description
