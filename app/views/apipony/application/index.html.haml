@@ -5,6 +5,8 @@
     - section.endpoints.each do |endpoint|
       .endpoint
         %h2
+          %span.method{ :class => endpoint.method }<
+            = endpoint.method
           = endpoint.url
         .description
           = endpoint.description

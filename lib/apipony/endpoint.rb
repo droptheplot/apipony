@@ -1,7 +1,8 @@
 class Apipony::Endpoint
-  attr_accessor :url, :description
+  attr_accessor :method, :url, :description
 
-  def initialize(url, &block)
+  def initialize(method, url, &block)
+    @method = method
     @url = set_base_url(url)
 
     instance_eval(&block)

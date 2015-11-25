@@ -1,5 +1,5 @@
 $dark_color: #111;
-$medium_color: #555;
+$medium_color: #888;
 
 * {
   margin: 0;
@@ -71,6 +71,23 @@ h2 {
   .endpoint {
     &:not(:last-child) {
       margin-bottom: 20px;
+    }
+    .method {
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 10px;
+      padding: 4px 5px;
+      border-radius: 3px;
+      margin-right: 5px;
+      &.get {
+        background: #1ABC9C;
+      }
+      &.post {
+        background: #3498DB;
+      }
+      &.delete {
+        background: #CA2C68;
+      }
     }
     .description {
       font-size: 12px;

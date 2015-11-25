@@ -8,7 +8,7 @@ class Apipony::Section
     instance_eval(&block)
   end
 
-  def endpoint(url, &block)
-    @endpoints << Apipony::Endpoint.new(url, &block)
+  def endpoint(method, url, &block)
+    @endpoints << Apipony::Endpoint.new(method, url, &block)
   end
 end
