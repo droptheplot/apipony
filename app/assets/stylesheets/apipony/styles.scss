@@ -86,7 +86,10 @@ h4 {
   }
   .endpoint {
     &:not(:last-child) {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      cursor: pointer;
     }
     .method {
       text-transform: uppercase;
@@ -111,11 +114,15 @@ h4 {
       margin-left: 10px;
       font-weight: normal;
     }
-    .response, .request {
-      padding-top: 20px;
-      .code {
-        padding: 8px 10px 10px;
-        font-size: 12px;
+    .more {
+      display: none;
+      padding-bottom: 20px;
+      .response, .request {
+        padding-top: 20px;
+        .code {
+          padding: 8px 10px 10px;
+          font-size: 12px;
+        }
       }
     }
   }
