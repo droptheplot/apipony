@@ -20,5 +20,4 @@
               Response:
               = endpoint.response.status
             - if endpoint.response.headers
-              %pre
-                = endpoint.response.headers
+              %pre.code= JSON.pretty_generate(endpoint.response.headers)

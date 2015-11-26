@@ -47,6 +47,7 @@ h3 {
 h4 {
   font-size: 12px;
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .container {
@@ -109,6 +110,12 @@ h4 {
     }
     .response {
       padding-top: 20px;
+      .code {
+        background: $light_color;
+        padding: 8px 10px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+      }
     }
   }
 }
