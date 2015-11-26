@@ -1,5 +1,5 @@
 class Apipony::Endpoint < Apipony::Base
-  attr_accessor :method, :url, :description, :response
+  attr_accessor :method, :url, :description, :response, :request
 
   def initialize(method, url, &block)
     @method = method
@@ -10,6 +10,10 @@ class Apipony::Endpoint < Apipony::Base
 
   def response_with(status, &block)
     @response = Apipony::Response.new(status, &block)
+  end
+
+  def request_with(&block)
+    @request = Apipony::Request.new(&block)
   end
 
   private
