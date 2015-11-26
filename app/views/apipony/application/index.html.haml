@@ -10,9 +10,7 @@
             = endpoint.method
           = endpoint.url
           - if endpoint.description
-            %span.description
-              &mdash;
-              = endpoint.description
+            %span.description= endpoint.description
         - if endpoint.request || endpoint.response
           .more
             - if endpoint.request
