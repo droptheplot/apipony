@@ -85,8 +85,17 @@ h4 {
     border-bottom: 1px solid $light_color;
   }
   .endpoint {
+    position: relative;
     &:not(:last-child) {
       margin-bottom: 20px;
+    }
+    .line {
+      display: none;
+      content: '';
+      width: 2px;
+      height: 100%;
+      position: absolute;
+      left: -20px;
     }
     h3 {
       cursor: pointer;
@@ -98,15 +107,6 @@ h4 {
       padding: 4px 5px;
       border-radius: 3px;
       margin-right: 5px;
-      &.get {
-        background: #1ABC9C;
-      }
-      &.post {
-        background: #3498DB;
-      }
-      &.delete {
-        background: #CA2C68;
-      }
     }
     .description {
       font-size: 12px;
@@ -116,7 +116,6 @@ h4 {
     }
     .more {
       display: none;
-      padding-bottom: 20px;
       .response, .request {
         padding-top: 20px;
         .code {
@@ -138,4 +137,14 @@ h4 {
     font-size: 11px;
     font-weight: bold;
   }
+}
+
+.get {
+  background: #1ABC9C;
+}
+.post {
+  background: #3498DB;
+}
+.delete {
+  background: #CA2C68;
 }

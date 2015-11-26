@@ -4,6 +4,7 @@
     %h2= section.title
     - section.endpoints.each do |endpoint|
       .endpoint
+        .line{ :class => endpoint.method }
         %h3
           %span.method{ :class => endpoint.method }<
             = endpoint.method
