@@ -2,7 +2,7 @@ class Apipony::Documentation
   class << self
     attr_accessor :base_url, :sections
 
-    def build(&block)
+    def define(&block)
       @sections = []
 
       instance_eval(&block)
