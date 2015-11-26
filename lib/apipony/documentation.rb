@@ -1,6 +1,6 @@
 class Apipony::Documentation
   class << self
-    attr_accessor :base_url, :sections
+    attr_accessor :title, :base_url, :sections
 
     def define(&block)
       @sections = []

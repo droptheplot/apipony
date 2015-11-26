@@ -1,10 +1,12 @@
+%h1
+  = @documentation.title
 - @documentation.sections.each do |section|
   .section
-    %h1
+    %h2
       = section.title
     - section.endpoints.each do |endpoint|
       .endpoint
-        %h2
+        %h3
           %span.method{ :class => endpoint.method }<
             = endpoint.method
           = endpoint.url
@@ -14,7 +16,7 @@
               = endpoint.description
         - if endpoint.response
           .response
-            %h3
+            %h4
               Response:
               = endpoint.response.status
             - if endpoint.response.headers
