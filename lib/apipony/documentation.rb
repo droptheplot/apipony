@@ -4,6 +4,8 @@ class Apipony::Documentation
 
     def define(&block)
       @sections = []
+      @title = 'API Documentation'
+      @base_url = ''
 
       instance_eval(&block)
     end

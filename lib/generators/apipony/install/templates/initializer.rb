@@ -1,6 +1,6 @@
 Apipony::Documentation.define do
   config do |c|
-    c.title = 'Apipony Documentation'
+    c.title = 'API Documentation'
     c.base_url = '/api/v1'
   end
 
