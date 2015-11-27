@@ -17,7 +17,7 @@ class Apipony::Endpoint < Apipony::Base
   end
 
   def id
-    "#{ @method }-#{ @url }"
+    File.join(@method, @url)
   end
 
   private

@@ -55,6 +55,10 @@ describe Apipony::Documentation do
     expect(Apipony::Documentation.sections.first.endpoints.first).to be_a Apipony::Endpoint
   end
 
+  it 'endpoint should have valid id' do
+    expect(Apipony::Documentation.sections.first.endpoints.first.id).to eq('get/api/v1/ponies')
+  end
+
   it 'response should be instance of Apipony::Response' do
     expect(Apipony::Documentation.sections.first.endpoints.first.response).to be_a Apipony::Response
   end
