@@ -2,7 +2,9 @@
 %html
   %head
     %title Apipony
+    %link{ :href => '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css', :rel => 'stylesheet' }/
     = stylesheet_link_tag 'apipony/application', media: 'all'
+    %script{ :src => '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js' }
     = javascript_include_tag 'apipony/application'
     = csrf_meta_tags
   %body
