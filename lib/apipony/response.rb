@@ -4,6 +4,6 @@ class Apipony::Response < Apipony::Base
   def initialize(status, &block)
     @status = status
 
-    instance_eval(&block)
+    instance_eval(&block) if block_given?
   end
 end
