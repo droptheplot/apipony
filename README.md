@@ -1,5 +1,8 @@
 # Apipony
 
+[![Gem Version](https://badge.fury.io/rb/apipony.svg)](https://badge.fury.io/rb/apipony)
+[![Code Climate](https://codeclimate.com/github/droptheplot/apipony/badges/gpa.svg)](https://codeclimate.com/github/droptheplot/apipony)
+
 Ruby DSL to create Rails API documentation from your application.
 
 ## Getting started
