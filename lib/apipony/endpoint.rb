@@ -16,6 +16,10 @@ class Apipony::Endpoint < Apipony::Base
     @request = Apipony::Request.new(&block)
   end
 
+  def id
+    "#{ @method }-#{ @url }"
+  end
+
   private
 
     def set_base_url(url)

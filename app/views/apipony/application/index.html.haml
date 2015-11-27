@@ -6,16 +6,17 @@
         - section.endpoints.each do |endpoint|
           %li
             %h5
-              %span.method{ :class => endpoint.method }<
-                = endpoint.method
-              = endpoint.url
+              = link_to root_path(:anchor => endpoint.id) do
+                %span.method{ :class => endpoint.method }<
+                  = endpoint.method
+                = endpoint.url
   .col-9
     %h1= @documentation.title
     - @documentation.sections.each do |section|
       .section
         %h2= section.title
         - section.endpoints.each do |endpoint|
-          .endpoint
+          .endpoint{ :id => endpoint.id }
             .line{ :class => endpoint.method }
             %h3
               %span.method{ :class => endpoint.method }<
