@@ -1,45 +1,50 @@
-%h1= @documentation.title
-- @documentation.sections.each do |section|
-  .section
-    %h2= section.title
-    - section.endpoints.each do |endpoint|
-      .endpoint
-        .line{ :class => endpoint.method }
-        %h3
-          %span.method{ :class => endpoint.method }<
-            = endpoint.method
-          = endpoint.url
-          - if endpoint.description
-            %span.description= endpoint.description
-        - if endpoint.request || endpoint.response
-          .more
-            - if endpoint.request
-              .request
-                %h4 Request:
-                .row
+.row
+  .col-3
+    - @documentation.sections.each do |section|
+      %h4= section.title
+      %ul
+        - section.endpoints.each do |endpoint|
+          %li
+            %h5
+              %span.method{ :class => endpoint.method }<
+                = endpoint.method
+              = endpoint.url
+  .col-9
+    %h1= @documentation.title
+    - @documentation.sections.each do |section|
+      .section
+        %h2= section.title
+        - section.endpoints.each do |endpoint|
+          .endpoint
+            .line{ :class => endpoint.method }
+            %h3
+              %span.method{ :class => endpoint.method }<
+                = endpoint.method
+              = endpoint.url
+            - if endpoint.description
+              .description= endpoint.description
+            - if endpoint.request || endpoint.response
+              - if endpoint.request
+                .request
+                  %h4 Request:
                   - if endpoint.request.params
-                    .col-6
-                      .panel
-                        .title Parameters
-                        %pre.code= JSON.pretty_generate(endpoint.request.params)
+                    .panel
+                      .title Parameters
+                      %pre.code= JSON.pretty_generate(endpoint.request.params)
                   - if endpoint.request.headers
-                    .col-6
-                      .panel
-                        .title Headers
-                        %pre.code= JSON.pretty_generate(endpoint.request.headers)
-            - if endpoint.response
-              .response
-                %h4
-                  Response:
-                  = endpoint.response.status
-                .row
+                    .panel
+                      .title Headers
+                      %pre.code= JSON.pretty_generate(endpoint.request.headers)
+              - if endpoint.response
+                .response
+                  %h4
+                    Response:
+                    = endpoint.response.status
                   - if endpoint.response.body
-                    .col-6
-                      .panel
-                        .title Body
-                        %pre.code= JSON.pretty_generate(endpoint.response.body)
+                    .panel
+                      .title Body
+                      %pre.code= JSON.pretty_generate(endpoint.response.body)
                   - if endpoint.response.headers
-                    .col-6
-                      .panel
-                        .title Headers
-                        %pre.code= JSON.pretty_generate(endpoint.response.headers)
+                    .panel
+                      .title Headers
+                      %pre.code= JSON.pretty_generate(endpoint.response.headers)
