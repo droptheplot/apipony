@@ -101,17 +101,6 @@ ul {
     &:not(:last-child) {
       margin-bottom: 40px;
     }
-    .line {
-      display: none;
-      content: '';
-      width: 2px;
-      height: 100%;
-      position: absolute;
-      left: -20px;
-    }
-    h3 {
-      cursor: pointer;
-    }
     .description {
       font-size: 12px;
       color: $medium_color;
@@ -149,17 +138,17 @@ ul {
   border-radius: 3px;
   margin-right: 5px;
   font-weight: bold;
-}
-
-.get {
-  background: #1ABC9C;
-}
-.post {
-  background: #3498DB;
-}
-.put {
-  background: #2980B9;
-}
-.delete {
-  background: #C0392B;
+  background: $medium_color;
+  &.get {
+    background: #1ABC9C;
+  }
+  &.post {
+    background: #3498DB;
+  }
+  &.put {
+    background: #2980B9;
+  }
+  &.delete {
+    background: #C0392B;
+  }
 }
