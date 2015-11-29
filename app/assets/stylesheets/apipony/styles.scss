@@ -3,6 +3,8 @@ $medium_color: #888;
 $light_color: #eee;
 $brand_color: #5E147D;
 
+@import url(https://fonts.googleapis.com/css?family=Cuprum&subset=latin,cyrillic);
+
 * {
   margin: 0;
   padding: 0;
@@ -67,7 +69,6 @@ ul {
 .container {
   width: 940px;
   margin: 0 auto;
-  padding: 40px 0;
   position: relative;
 }
 
@@ -89,6 +90,28 @@ ul {
   .col-offset-#{$i} {
     margin-left: 60px * $i + 20px * ($i - 1) + 30px;
   }
+}
+
+header {
+  background: $brand_color;
+  height: 60px;
+  line-height: 60px;
+  .title {
+    font-family: 'Cuprum';
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+  }
+  .back {
+    float: right;
+    color: #fff;
+    opacity: .7;
+    font-size: 12px;
+  }
+}
+
+main {
+  padding: 40px 0;
 }
 
 .section {
