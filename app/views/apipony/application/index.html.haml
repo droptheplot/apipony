@@ -30,7 +30,20 @@
                   - if endpoint.request.params
                     .panel
                       .title Parameters
-                      %pre.code= JSON.pretty_generate(endpoint.request.params)
+                      %table.table
+                        - endpoint.request.params.each do |param|
+                          %tr.param
+                            %td.name
+                              = param.name
+                            %td.type
+                              = param.type
+                            %td.required
+                              - if param.required
+                                %i.fa.fa-check-square-o{ :title => 'Required' }
+                              - else
+                                %i.fa.fa-square-o{ :title => 'Optional' }
+                            %td.example
+                              = param.example
                   - if endpoint.request.headers
                     .panel
                       .title Headers

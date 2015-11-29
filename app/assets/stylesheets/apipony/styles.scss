@@ -1,6 +1,7 @@
 $dark_color: #111;
 $medium_color: #888;
 $light_color: #eee;
+$brand_color: #5E147D;
 
 * {
   margin: 0;
@@ -150,5 +151,31 @@ ul {
   }
   &.delete {
     background: #C0392B;
+  }
+}
+
+.param {
+  .name {
+    color: $brand_color;
+    font-weight: bold;
+  }
+  .type {
+    color: $medium_color;
+    font-style: italic;
+  }
+  .required {
+    text-align: center;
+    .fa {
+      color: $medium_color;
+    }
+  }
+}
+
+.table {
+  padding: 8px 0;
+  tr {
+    td {
+      padding: 2px 10px;
+    }
   }
 }
