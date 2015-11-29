@@ -9,9 +9,7 @@ Apipony::Documentation.define do
       e.description = 'Find ponies'
 
       request_with do
-        set :params, {
-          :name => :applejack
-        }
+        param :name, example: :applejack, required: true
       end
 
       response_with 200 do
@@ -28,12 +26,10 @@ Apipony::Documentation.define do
       e.description = 'Create pony'
 
       request_with do
-        set :params, {
-          :name => :fluttershy,
-          :kind => :pegasus,
-          :sex => :female,
-          :occupation => :caretaker
-        }
+        param :name, example: :fluttershy
+        param :kind, example: :pegasus
+        param :sex, example: :female
+        param :occupation, example: :caretaker
       end
 
       response_with 200
@@ -43,12 +39,10 @@ Apipony::Documentation.define do
       e.description = 'Update pony id'
 
       request_with do
-        set :params, {
-          :name => :fluttershy,
-          :kind => :pegasus,
-          :sex => :female,
-          :occupation => :singer
-        }
+        param :name
+        param :kind
+        param :sex
+        param :occupation
       end
     end
 
