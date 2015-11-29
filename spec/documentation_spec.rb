@@ -13,9 +13,7 @@ describe Apipony::Documentation do
           e.description = 'Find ponies'
 
           request_with do
-            set :params, {
-              :name => :applejack
-            }
+            param :name, example: 'applejack', type: 'string', required: true
           end
 
           response_with 200 do
