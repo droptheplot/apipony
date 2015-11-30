@@ -7,13 +7,13 @@
       <% if response.example.headers %>
         <div class="title">Headers</div>
         <pre class="code hljs json">
-<%= JSON.pretty_generate(response.example.headers) %>
+          <%= JSON.pretty_generate(response.example.headers) %>
         </pre>
       <% end %>
       <% if response.example.body %>
         <div class="title">Body</title>
         <pre class="code hljs json">
-<%= JSON.pretty_generate(response.example.body) %>
+          <%= JSON.pretty_generate(response.example.body) %>
         </pre>
       <% end %>
     </div>

@@ -1,0 +1,15 @@
+<% @documentation.sections.each do |section| %>
+  <h4><%= section.title %></h4>
+  <ul>
+    <% section.endpoints.each do |endpoint| %>
+      <li>
+        <h5>
+          <%= link_to root_path(:anchor => endpoint.id) do %>
+            <span class="method <%= endpoint.method %>"><%= endpoint.method %></span>
+            <%= endpoint.url %>
+          <% end %>
+        </h5>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
