@@ -21,6 +21,7 @@
   
   <% if attribute.is_enum? %>
     <ul class="attribute-enum-list">
+      <div class="title">Possible values</div>
       <% attribute.choices.each do |choice| %>
         <li class="attribute-enum-member">
           <div class="attribute-enum-member-name attribute-enum-member-name"><%= choice.name %></div>
