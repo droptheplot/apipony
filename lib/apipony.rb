@@ -11,4 +11,8 @@ require 'apipony/response_attribute'
 require 'apipony/example_response'
 
 module Apipony
+  def self.define_attribute_type(name, **params, &block)
+    a = Apipony::ResponseAttribute.new("", **params, &block)
+    Apipony::ResponseAttribute.define_type(name, a)
+  end
 end
