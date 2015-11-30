@@ -21,4 +21,11 @@
       <% end %>
     </ul>
   <% end %> 
+  <% if attribute.is_object? %>
+    <ul class="attributes-list">
+      <%= render partial: "attribute",
+      collection: attribute.attributes,
+      as: :attribute %>
+    </ul>
+  <% end %>
 </li>

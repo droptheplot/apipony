@@ -34,6 +34,18 @@
             <% end %>
           </div>
         <% end %>
+        <div id="defined_subtypes">
+          <% @documentation.subtypes.each do |name, type| %>
+            <div id="subtype-<%= name %>">
+              <h4><%= name %></h4>
+              <ul class="attributes-list">
+                <%= render partial: "attribute", 
+                collection: type.attributes, 
+                as: :attribute %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

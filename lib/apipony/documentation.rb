@@ -9,6 +9,9 @@ class Apipony::Documentation
 
       instance_eval(&block)
     end
+    def subtypes
+      Apipony::ResponseAttribute.subtypes
+    end
 
     def section(title, &block)
       @sections << Apipony::Section.new(title, &block)

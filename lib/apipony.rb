@@ -28,9 +28,4 @@ module Apipony
     a = Apipony::ResponseAttribute.new("", **params, &block)
     Apipony::ResponseAttribute.define_type(name, a)
   end
-
-  def self.defined_subtypes
-    Apipony::ResponseAttribute.defined_subtypes
-  end
-
 end
