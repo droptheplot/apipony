@@ -19,8 +19,11 @@
   <% end %>
 
   <% if response.attributes.size > 0 %>
-    <ul class="response-attributes">
-      <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
-    </ul>
+    <div class="panel">
+      <div class="title">Attributes</div>
+      <div class="table">
+        <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
+      </div>
+    </div>
   <% end %>
 </div>
