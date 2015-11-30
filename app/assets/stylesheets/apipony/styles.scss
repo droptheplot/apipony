@@ -291,6 +291,7 @@ footer {
 
     .attribute-name {
       flex: 2 1 0;
+      min-width: 90px;
     }
 
     .attribute-description {
@@ -319,6 +320,7 @@ footer {
   .attribute-enum-member-name {
     font-weight: 400;
     margin-right: 10px;
+    min-width: 60px;
     flex: 1 1 0;
     color: $brand_color;
   }
