@@ -5,8 +5,8 @@ Apipony::Documentation.define do
   end
 
   subtype :pony_stub do
-    attribute :name, type: :string
-    attribute :id, type: :number
+    attribute :name, type: :string, example: "Applejack"
+    attribute :id, type: :number, example: 10
   end
 
   section 'Ponies' do
@@ -18,27 +18,21 @@ Apipony::Documentation.define do
       end
 
       response_with 200 do
-        example do 
-          set :body, {
-            :name => :applejack,
-            :kind => :earth,
-            :sex => :female,
-            :occupation => :farmer
-          }
-        end
-        attribute :sex, description: "What sex is this pony?"
-        attribute :name, description: "This pony's given name."
+        attribute :sex, description: "What sex is this pony?",
+          example: "Female"
+        attribute :name, description: "This pony's given name.",
+          example: "Twilight Sparkle"
         attribute :occupation, description: %{
           A short string describing what occupation this pony has.
-        }
+        }, example: "Princess"
         attribute :kind do
-          choice :unicorn, description: "A pony with a horn."
-          choice :earth, description: "A pony with no horn or wings."
-          choice :pegasus, description: "A pony with wings."
           choice :alicorn, description: %{
             A pony with wings and a horn. This also indicates that the pony
             is royalty of some sort.
-          }      
+          }
+          choice :unicorn, description: "A pony with a horn."
+          choice :earth, description: "A pony with no horn or wings."
+          choice :pegasus, description: "A pony with wings."      
         end
         attribute :friends, array: true, type: :pony_stub
       end
