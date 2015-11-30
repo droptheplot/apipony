@@ -110,6 +110,56 @@ Apipony::Documentation.define do
   end
 end
 ```
+
+### Example Generation
+When describing attributes, you can provide an optional `example:` parameter.
+If included, this will be used to generate the example response in the 
+documentation. 
+
+```ruby
+Apipony::Documentation.define do
+  section "Ponies" do
+    endpoint "get", "/ponies/:id" do |e|
+      respond_with 200 do
+        attribute :name, type: :string, example: "Applejack"
+        # Enums members automatically select the first choice
+        attribute :kind, type: :enum do
+          choice :earth
+          choice :pegasus
+          choice :unicorn
+          choice :alicorn
+        end
+      end
+    end
+    endpoint "get", "/ponies/" do |e|
+      # Automatic serialization of arrays is supported
+      respond_with 200, array: true do
+        attribute :name, type: :string, example: "Applejack"
+        attribute :id, type: :number, example: 10
+      end
+    end
+  end
+end
+```
+`GET /ponies/:id` will now have the example of:
+
+```json
+{
+  "name": "Applejack",
+  "kind": "Earth"
+}
+```
+`GET /ponies/` will have the example of:
+
+```json
+[
+  {
+    "name": "Applejack",
+    "id": 10
+  }
+]
+```
+
 ### Predefined Subtypes
 Sometimes, when building an API, it can be useful to store data in a common
 format. Apipony lets you define this common format once, then use it multiple

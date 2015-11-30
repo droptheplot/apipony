@@ -52,7 +52,7 @@ class Apipony::ResponseAttribute
     if is_object? || is_subtype?
       sub = Hash[@attributes.select(&:example).map{|a| [a.name, a.example]}]
     elsif is_enum?
-      sub = choices.sample.name
+      sub = choices.first.name
     else
       sub = @example
     end
