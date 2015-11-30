@@ -12,6 +12,7 @@ $delete-color: #c0392b;
 
 // Misc. values
 $transition-time: 200ms;
+$mobile-width: 900px;
 
 
 *, *::before, *::after {
@@ -81,7 +82,9 @@ ul {
 }
 
 .container {
-  width: 940px;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 20px;
   margin: 0 auto;
   position: relative;
 }
@@ -89,20 +92,28 @@ ul {
 .row {
   overflow: hidden;
   margin: 0 -10px;
-}
+  display: flex;
+  flex-flow: row nowrap;
 
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    box-sizing: border-box;
-    margin: 0 10px;
-    width: 60px * $i + 20px * ($i - 1);
-    float: left;
+  @media all and (max-width: $mobile-width) {
+    flex-flow: row wrap;
   }
 }
 
-@for $i from 1 through 12 {
-  .col-offset-#{$i} {
-    margin-left: 60px * $i + 20px * ($i - 1) + 30px;
+.sidebar {
+  flex: 1 120px;
+
+  @media all and (max-width: $mobile-width) {
+    flex: 1 100%;
+    margin-bottom: 30px;
+  }
+}
+
+.main-col {
+  flex: 8;
+
+  @media all and (max-width: $mobile-width) {
+    flex: 1 100%;
   }
 }
 
@@ -189,6 +200,7 @@ footer {
   border: 1px solid darken($light_color, 5%);
   border-radius: 3px;
   margin-top: 20px;
+  overflow-x: auto;
 
   .title {
     border-bottom: 1px solid darken($light_color, 5%);

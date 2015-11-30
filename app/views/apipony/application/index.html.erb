@@ -3,11 +3,11 @@
 <main>
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="sidebar">
         <%= render partial: "sidebar" %>
       </div>
 
-      <div class="col-9">
+      <div class="main-col">
         <% @documentation.sections.each do |section| %>
           <div class="section">
             <h2><%= section.title %></h2>
