@@ -1,0 +1,115 @@
+<header>
+  <div class="container">
+    <%= link_to @documentation.title, root_path, class: 'title' %>
+    <% if main_app.root_path %>
+      <%= link_to 'Back to site', main_app.root_path, class: 'back' %>
+    <% end %>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <% @documentation.sections.each do |section| %>
+          <h4><%= section.title %></h4>
+          <ul>
+            <% section.endpoints.each do |endpoint| %>
+              <li>
+                <h5>
+                  <%= link_to root_path(:anchor => endpoint.id) do %>
+                    <span class="method <%= endpoint.method %>"><%= endpoint.method %></span>
+                    <%= endpoint.url %>
+                  <% end %>
+                </h5>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+
+      <div class="col-9">
+        <% @documentation.sections.each do |section| %>
+          <div class="section">
+            <h2><%= section.title %></h2>
+            <% section.endpoints.each do |endpoint| %>
+              <div class="endpoint" id="<%= endpoint.id %>">
+                <h3>
+                  <span class="method <%= endpoint.method %>"><%= endpoint.method %></span><%= endpoint.url %>
+                </h3>
+
+                <% if endpoint.description %>
+                  <div class="description">
+                    <%= endpoint.description %>
+                  </div>
+                <% end %>
+
+                <% if endpoint.request || endpoint.response %>
+                  <% if endpoint.request %>
+                    <div class="request">
+                      <h4>Request&#58;</h4>
+                      <% if endpoint.request.params %>
+                        <div class="panel">
+                          <div class="title">Parameters</div>
+                          <table class="table">
+                            <% endpoint.request.params.each do |param| %>
+                              <tr class="param">
+                                <td class="name">
+                                  <%= param.name %>
+                                </td>
+                                <td class="type">
+                                  <%= param.type %>
+                                </td>
+                                <td class="required">
+                                  <% if param.required %>
+                                    <i class="fa check-square-o" title="Required"></i>
+                                  <% else %>
+                                    <i class="fa fa-square-o" title="Optional"></i>
+                                  <% end %>
+                                </td>
+                                <td class="example">
+                                  <%= param.example %>
+                                </td>
+                              </tr>
+                            <% end %>
+                          </table>
+                        </div>
+                      <% end %>
+
+                      <% if endpoint.request.headers %>
+                        <div class="panel">
+                          <div class="title">Headers</div>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <% if endpoint.response %>
+                    <div class="response">
+                      <h4>Response&#58; <%= endpoint.response.status %></h4>
+
+                      <% if endpoint.response.body %>
+                        <div class="panel">
+                          <div class="title">Body</div>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
+                        </div>
+                      <% end %>
+
+                      <% if endpoint.response.headers %>
+                        <div class="panel">
+                          <div class="title">Body</div>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
