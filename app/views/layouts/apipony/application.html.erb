@@ -1,6 +1,14 @@
 <html>
   <head>
+    <%# UTF-8 Character Set %>
+    <meta charset="utf-8">
+
+    <%# HTML Title %>
     <title><%= @documentation.title %></title>
+
+    <%# Viewport meta tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
     <%= stylesheet_link_tag 'apipony/application', media: 'all' %>
