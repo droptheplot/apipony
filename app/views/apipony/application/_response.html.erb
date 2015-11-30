@@ -6,18 +6,16 @@
       <%# This is kind of fancy for no reason but whatever %>
       <% if response.example.headers %>
         <div class="title">Headers</div>
-        <pre class="code hljs json">
-          <%= JSON.pretty_generate(response.example.headers) %>
-        </pre>
+        <pre class="code hljs json"><%= JSON.pretty_generate(response.example.headers) %></pre>
       <% end %>
+
       <% if response.example.body %>
         <div class="title">Body</title>
-        <pre class="code hljs json">
-          <%= JSON.pretty_generate(response.example.body) %>
-        </pre>
+        <pre class="code hljs json"><%= JSON.pretty_generate(response.example.body) %></pre>
       <% end %>
     </div>
   <% end %>
+  
   <% if response.attributes.size > 0 %>
     <ul class="response-attributes">
       <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
