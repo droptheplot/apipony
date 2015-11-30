@@ -1,0 +1,25 @@
+.request
+  %h4 Request:
+  - if request.params
+    .panel
+      .title Parameters
+      %table.table
+        - request.params.each do |param|
+          %tr.param
+            %td.name
+              = param.name
+            %td.type
+              = param.type
+            %td.required
+              - if param.required
+                %i.fa.fa-check-square-o{ :title => 'Required' }
+              - else
+                %i.fa.fa-square-o{ :title => 'Optional' }
+            %td.example
+              = param.example
+            %td.description
+              = param.description
+        - if request.headers
+          .panel
+            .title Headers
+            %pre.code= JSON.pretty_generate(endpoint.request.headers)

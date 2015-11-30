@@ -1,6 +1,7 @@
 # Apipony
 
 [![Gem Version](https://badge.fury.io/rb/apipony.svg)](https://badge.fury.io/rb/apipony)
+[![Build Status](https://travis-ci.org/droptheplot/apipony.svg?branch=travis)](https://travis-ci.org/droptheplot/apipony)
 [![Code Climate](https://codeclimate.com/github/droptheplot/apipony/badges/gpa.svg)](https://codeclimate.com/github/droptheplot/apipony)
 
 Ruby DSL to create Rails API documentation from your application.
@@ -28,7 +29,7 @@ Apipony::Documentation.define do
       e.description = 'Find ponies'
 
       request_with do
-        param :name, example: 'applejack', required: true 
+        param :name, example: 'applejack', required: true
       end
 
       response_with 200 do
