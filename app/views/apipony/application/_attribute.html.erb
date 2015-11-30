@@ -17,7 +17,7 @@
       <%= attribute.type %>
     <% end %> 
   </div>
-
+</div>
   <% if attribute.is_enum? %>
     <ul class="attribute-enum-list">
       <% attribute.choices.each do |choice| %>
@@ -28,14 +28,11 @@
       <% end %>
     </ul>
   <% end %>
-</div>
 <% if attribute.is_object? %>
-  <div class="sub-attributes">
     <ul class="attributes-list">
       <%= render partial: "attribute",
       collection: attribute.attributes,
       as: :attribute %>
     </ul>
-  </div>
   <% end %>
 </li>
