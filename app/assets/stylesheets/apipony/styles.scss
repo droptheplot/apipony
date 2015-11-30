@@ -1,13 +1,16 @@
 $dark_color: #111;
 $medium_color: #888;
 $light_color: #eee;
-$brand_color: #5E147D;
-
-@import url(https://fonts.googleapis.com/css?family=Cuprum&subset=latin,cyrillic);
+$brand_color: #333;
+$get-color: #1abc9c;
+$post-color: #3498db;
+$put-color: #2980d9;
+$delete-color: #c0392b;
 
 * {
   margin: 0;
   padding: 0;
+
   &:focus {
     outline: none;
   }
@@ -19,8 +22,8 @@ html, body {
 }
 
 body {
-  font-family: 'Arial';
-  font-size: 14px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 12px;
   color: $dark_color;
   -webkit-font-smoothing: antialiased;
 }
@@ -46,7 +49,7 @@ h2 {
 
 h3 {
   font-size: 17px;
-  line-height: 17px;
+  line-height: 16px;
 }
 
 h4 {
@@ -61,6 +64,7 @@ h5 {
 
 ul {
   margin-bottom: 20px;
+
   li {
     margin-bottom: 10px;
   }
@@ -96,12 +100,13 @@ header {
   background: $brand_color;
   height: 60px;
   line-height: 60px;
+
   .title {
-    font-family: 'Cuprum';
     font-weight: bold;
     font-size: 20px;
     color: #fff;
   }
+
   .back {
     float: right;
     color: #fff;
@@ -120,6 +125,7 @@ footer {
   border-top: 1px solid $light_color;
   text-align: right;
   font-size: 12px;
+
   a {
     color: $medium_color;
   }
@@ -131,19 +137,24 @@ footer {
     margin-bottom: 40px;
     border-bottom: 1px solid $light_color;
   }
+
   .endpoint {
     position: relative;
+
     &:not(:last-child) {
       margin-bottom: 40px;
     }
+
     .description {
       font-size: 12px;
       color: $medium_color;
       padding-top: 20px;
       font-weight: normal;
     }
+
     .response, .request {
       padding-top: 20px;
+
       .code {
         padding: 8px 10px 10px;
         font-size: 12px;
@@ -157,6 +168,7 @@ footer {
   border: 1px solid darken($light_color, 5%);
   border-radius: 3px;
   margin-top: 20px;
+
   .title {
     border-bottom: 1px solid darken($light_color, 5%);
     padding: 10px;
@@ -167,6 +179,7 @@ footer {
 
 .method {
   text-transform: uppercase;
+  vertical-align: bottom;
   color: #fff;
   font-size: 9px;
   padding: 4px 5px;
@@ -174,31 +187,40 @@ footer {
   margin-right: 5px;
   font-weight: bold;
   background: $medium_color;
+
   &.get {
-    background: #1ABC9C;
+    background: $get-color;
   }
+
   &.post {
-    background: #3498DB;
+    background: $post-color;
   }
+
   &.put {
-    background: #2980B9;
+    background: $put-color;
   }
+  
   &.delete {
-    background: #C0392B;
+    background: $delete-color;
   }
 }
 
 .param {
+  font-size: 12px;
+
   .name {
     color: $brand_color;
     font-weight: bold;
   }
+
   .type {
     color: $medium_color;
     font-style: italic;
   }
+
   .required {
     text-align: center;
+  
     .fa {
       color: $medium_color;
     }
@@ -207,6 +229,7 @@ footer {
 
 .table {
   padding: 8px 0;
+  
   tr {
     td {
       padding: 2px 10px;
