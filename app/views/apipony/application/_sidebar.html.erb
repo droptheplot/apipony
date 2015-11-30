@@ -1,5 +1,7 @@
 <% @documentation.sections.each do |section| %>
-  <h4><%= section.title %></h4>
+  <h4>
+    <%= link_to section.title, root_path(:anchor => section.title) %>
+  </h4>
   <ul>
     <% section.endpoints.each do |endpoint| %>
       <li>

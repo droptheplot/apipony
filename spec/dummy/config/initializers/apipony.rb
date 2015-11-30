@@ -75,7 +75,7 @@ Apipony::Documentation.define do
   end
 
   section 'Places' do
-    endpoint 'get', '/places/id' do |e|
+    endpoint 'get', '/places/:id' do |e|
       e.description = "Info about a place"
       response_with 200 do |r|
         r.example do
@@ -100,19 +100,19 @@ Apipony::Documentation.define do
       response_with 200 do |r|
         r.example do 
         set :body, [
-            {
-              :id => 1,
-              :name => :equestria
-            },
-            {
-              :id => 2,
-              :name => :ponyville
-            },
-            {
-              :id => 3,
-              :name => :canterlot
-            }
-          ]
+          {
+            :id => 1,
+            :name => :equestria
+          },
+          {
+            :id => 2,
+            :name => :ponyville
+          },
+          {
+            :id => 3,
+            :name => :canterlot
+          }
+        ]
         end
       end
     end
