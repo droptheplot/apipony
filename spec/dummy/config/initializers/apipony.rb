@@ -26,14 +26,14 @@ Apipony::Documentation.define do
           }
         end
         attribute :sex, description: "What sex is this pony?"
-        attribute :name, description: "This pony's given name"
+        attribute :name, description: "This pony's given name."
         attribute :occupation, description: %{
           A short string describing what occupation this pony has.
         }
         attribute :kind do
-          choice :unicorn, description: "A pony with a horn"
-          choice :earth, description: "A pony with no horn or wings"
-          choice :pegasus, description: "A pony with wings"
+          choice :unicorn, description: "A pony with a horn."
+          choice :earth, description: "A pony with no horn or wings."
+          choice :pegasus, description: "A pony with wings."
           choice :alicorn, description: %{
             A pony with wings and a horn. This also indicates that the pony
             is royalty of some sort.
@@ -57,7 +57,7 @@ Apipony::Documentation.define do
     end
 
     endpoint 'put', '/ponies/:id' do |e|
-      e.description = 'Update pony id'
+      e.description = 'Update pony by id'
 
       request_with do
         param :name
@@ -75,6 +75,29 @@ Apipony::Documentation.define do
   end
 
   section 'Places' do
+    endpoint 'get', '/places' do |e|
+      e.description = 'Get places'
+
+      response_with 200 do |r|
+        r.example do 
+        set :body, [
+          {
+            :id => 1,
+            :name => :equestria
+          },
+          {
+            :id => 2,
+            :name => :ponyville
+          },
+          {
+            :id => 3,
+            :name => :canterlot
+          }
+        ]
+        end
+      end
+    end
+    
     endpoint 'get', '/places/:id' do |e|
       e.description = "Info about a place"
       response_with 200 do |r|
@@ -97,29 +120,6 @@ Apipony::Documentation.define do
         attribute :name, type: :string
         attribute :rulers, array: true, type: :pony_stub
         attribute :population, type: :number
-      end
-    end
-
-    endpoint 'get', '/places' do |e|
-      e.description = 'Get places'
-
-      response_with 200 do |r|
-        r.example do 
-        set :body, [
-          {
-            :id => 1,
-            :name => :equestria
-          },
-          {
-            :id => 2,
-            :name => :ponyville
-          },
-          {
-            :id => 3,
-            :name => :canterlot
-          }
-        ]
-        end
       end
     end
   end
