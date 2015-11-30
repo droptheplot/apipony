@@ -82,6 +82,34 @@ Apipony::Documentation.define do
   end
 end
 ```
+### Enum Attributes
+Your API may have some fields that can be picked from a pre-defined set of
+values. You can document those values by using an enum attribute.
+
+```ruby
+Apipony::Documentation.define do
+  section "Poines" do
+    endpoint "get", "/ponies/:id" do |e|
+      e.description = "Information about a pony"
+      example do 
+        set :body, {
+          name: "Applejack",
+          sex: "female",
+          kind: :earth
+          occupation: :farmer
+        }
+      attribute :kind, type: :enum do
+        choice :earth, description: "A pony with no wings or horn"
+        choice :unicorn, description: "A pony with a horn"
+        choice :pegasus, description: "A pony with wings"
+        choice :alicorn,
+          description: "A pony with wings and a horn. Indicates royalty."
+      end
+    end
+  end
+end
+```
+
 ### Predefined Subtypes
 Sometimes, when building an API, it can be useful to store data in a common
 format. Apipony lets you define this common format once, then use it multiple
