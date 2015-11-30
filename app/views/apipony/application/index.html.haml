@@ -1,0 +1,76 @@
+%header
+  .container
+    = link_to @documentation.title, root_path, class: 'title'
+    - if main_app.root_path
+      = link_to 'Back to site', main_app.root_path, class: 'back'
+%main
+  .container
+    .row
+      .col-3
+        - @documentation.sections.each do |section|
+          %h4= section.title
+          %ul
+            - section.endpoints.each do |endpoint|
+              %li
+                %h5
+                  = link_to root_path(:anchor => endpoint.id) do
+                    %span.method{ :class => endpoint.method }<
+                      = endpoint.method
+                    = endpoint.url
+      .col-9
+        - @documentation.sections.each do |section|
+          .section
+            %h2= section.title
+            - section.endpoints.each do |endpoint|
+              .endpoint{ :id => endpoint.id }
+                %h3
+                  %span.method{ :class => endpoint.method }<
+                    = endpoint.method
+                  = endpoint.url
+                - if endpoint.description
+                  .description= endpoint.description
+                - if endpoint.request || endpoint.response
+                  - if endpoint.request
+                    .request
+                      %h4 Request:
+                      - if endpoint.request.params
+                        .panel
+                          .title Parameters
+                          %table.table
+                            - endpoint.request.params.each do |param|
+                              %tr.param
+                                %td.name
+                                  = param.name
+                                %td.type
+                                  = param.type
+                                %td.required
+                                  - if param.required
+                                    %i.fa.fa-check-square-o{ :title => 'Required' }
+                                  - else
+                                    %i.fa.fa-square-o{ :title => 'Optional' }
+                                %td.example
+                                  = param.example
+                                %td.description
+                                  = param.description
+                      - if endpoint.request.headers
+                        .panel
+                          .title Headers
+                          %pre.code= JSON.pretty_generate(endpoint.request.headers)
+                  - if endpoint.response
+                    .response
+                      %h4
+                        Response:
+                        = endpoint.response.status
+                      - if endpoint.response.body
+                        .panel
+                          .title Body
+                          %pre.code= JSON.pretty_generate(endpoint.response.body)
+                      - if endpoint.response.headers
+                        .panel
+                          .title Headers
+                          %pre.code= JSON.pretty_generate(endpoint.response.headers)
+%footer
+  .container
+    = link_to 'https://github.com/droptheplot/apipony' do
+      %i.fa.fa-github
+      Apipony
