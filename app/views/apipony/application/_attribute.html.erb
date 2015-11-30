@@ -1,4 +1,5 @@
 <li class="attribute">
+<div class="attribute-info">
   <div class="attribute-name">
     <%= attribute.name %>
   </div>
@@ -26,12 +27,15 @@
         </li>
       <% end %>
     </ul>
-  <% end %> 
-  <% if attribute.is_object? %>
+  <% end %>
+</div>
+<% if attribute.is_object? %>
+  <div class="sub-attributes">
     <ul class="attributes-list">
       <%= render partial: "attribute",
       collection: attribute.attributes,
       as: :attribute %>
     </ul>
+  </div>
   <% end %>
 </li>
