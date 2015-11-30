@@ -7,7 +7,7 @@ class Apipony::ResponseAttribute
   end
 
   def self.defined_subtypes
-    @type_definition
+    @type_definitions
   end
 
   def self.get_defined(name)

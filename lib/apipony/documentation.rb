@@ -10,7 +10,7 @@ class Apipony::Documentation
       instance_eval(&block)
     end
     def subtypes
-      Apipony::ResponseAttribute.subtypes
+      Apipony::ResponseAttribute.defined_subtypes
     end
 
     def section(title, &block)
