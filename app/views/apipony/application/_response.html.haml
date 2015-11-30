@@ -1,0 +1,12 @@
+.response
+  %h4
+    Response:
+    = response.status
+  - if response.body
+    .panel
+      .title Body
+      %pre.code= JSON.pretty_generate(response.body)
+  - if response.headers
+    .panel
+      .title Headers
+      %pre.code= JSON.pretty_generate(response.headers)
