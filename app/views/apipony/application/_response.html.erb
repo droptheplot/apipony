@@ -7,20 +7,20 @@
       <% if response.example.headers %>
         <div class="title">Headers</div>
         <pre class="code hljs json">
-<%= JSON.pretty_generate(response.example.headers) %>
+          <%= JSON.pretty_generate(response.example.headers) %>
         </pre>
       <% end %>
       <% if response.example.body %>
         <div class="title">Body</title>
         <pre class="code hljs json">
-<%= JSON.pretty_generate(response.example.body) %>
+          <%= JSON.pretty_generate(response.example.body) %>
         </pre>
       <% end %>
     </div>
   <% end %>
   <% if response.attributes.size > 0 %>
     <ul class="response-attributes">
-      <%= render partial: 'attribute', collection: response.attributes, as: :at %>
+      <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
     </ul>
   <% end %>
 </div>

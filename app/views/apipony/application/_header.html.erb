@@ -1,0 +1,8 @@
+<header>
+  <div class="container">
+    <%= link_to @documentation.title, root_path, class: 'title' %>
+    <% if main_app.root_path %>
+      <%= link_to 'Back to site', main_app.root_path, class: 'back' %>
+    <% end %>
+  </div>
+</header>
