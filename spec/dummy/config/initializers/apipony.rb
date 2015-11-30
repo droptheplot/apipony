@@ -12,13 +12,15 @@ Apipony::Documentation.define do
         param :name, example: :applejack, required: true
       end
 
-      response_with 200 do
-        set :body, {
-          :name => :applejack,
-          :kind => :earth,
-          :sex => :female,
-          :occupation => :farmer
-        }
+      response_with 200 do |r|
+        r.example do 
+          set :body, {
+            :name => :applejack,
+            :kind => :earth,
+            :sex => :female,
+            :occupation => :farmer
+          }
+        end
       end
     end
 
@@ -57,21 +59,23 @@ Apipony::Documentation.define do
     endpoint 'get', '/places' do |e|
       e.description = 'Get places'
 
-      response_with 200 do
+      response_with 200 do |r|
+        r.example do 
         set :body, [
-          {
-            :id => 1,
-            :name => :equestria
-          },
-          {
-            :id => 2,
-            :name => :ponyville
-          },
-          {
-            :id => 3,
-            :name => :canterlot
-          }
-        ]
+            {
+              :id => 1,
+              :name => :equestria
+            },
+            {
+              :id => 2,
+              :name => :ponyville
+            },
+            {
+              :id => 3,
+              :name => :canterlot
+            }
+          ]
+        end
       end
     end
   end

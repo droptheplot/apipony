@@ -56,19 +56,7 @@
                         .panel
                           .title Headers
                           %pre.code= JSON.pretty_generate(endpoint.request.headers)
-                  - if endpoint.response
-                    .response
-                      %h4
-                        Response:
-                        = endpoint.response.status
-                      - if endpoint.response.body
-                        .panel
-                          .title Body
-                          %pre.code= JSON.pretty_generate(endpoint.response.body)
-                      - if endpoint.response.headers
-                        .panel
-                          .title Headers
-                          %pre.code= JSON.pretty_generate(endpoint.response.headers)
+                      = render 'response', endpoint: endpoint
 %footer
   .container
     = link_to 'https://github.com/droptheplot/apipony' do

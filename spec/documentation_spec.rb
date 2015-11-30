@@ -27,10 +27,10 @@ describe Apipony::Documentation do
                 :sex => :female,
                 :occupation => :farmer
               }
-              attribute :name, type: :string, description: "This pony's name"
-              attribute :kind do |a|
-                a.type = :string
-              end
+            end
+            attribute :name, type: :string, description: "This pony's name"
+            attribute :kind do |a|
+              a.type = :string
             end
           end
         end

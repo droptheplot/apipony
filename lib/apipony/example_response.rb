@@ -1,8 +1,7 @@
 class Apipony::ExampleResponse < Apipony::Base
-  attr_accessor :status, :headers, :body
+  attr_accessor :headers, :body
 
-  def initialize(status, &block)
-    @status = status
+  def initialize(&block)
     instance_eval(&block) if block_given?
   end
 

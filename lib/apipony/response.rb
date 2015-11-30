@@ -3,7 +3,7 @@ class Apipony::Response
   def initialize(status, &block)
     @status = status
     @attributes = []
-    instance_eval(&block)
+    instance_eval(&block) if block_given?
   end
 
   def example(&block)
