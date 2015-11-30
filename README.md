@@ -86,6 +86,7 @@ end
 Your API may have some fields that can be picked from a pre-defined set of
 values. You can document those values by using an enum attribute.
 
+
 ```ruby
 Apipony::Documentation.define do
   section "Poines" do
@@ -109,7 +110,6 @@ Apipony::Documentation.define do
   end
 end
 ```
-
 ### Predefined Subtypes
 Sometimes, when building an API, it can be useful to store data in a common
 format. Apipony lets you define this common format once, then use it multiple
