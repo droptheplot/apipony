@@ -17,10 +17,20 @@ class Apipony::ResponseAttribute
     @name = name
     @description = description
     @type = type
-    instance_eval(&block) if block_given?
+    if block_given? 
+      instance_eval(&block)
+    ## This attribute is of a predefined subtype
+    elsif (subtype = self.class.get_defined(@type))
+      @attributes = subtype.attributes
+      @is_subtype = true
+    end
   end
 
-  def use_defined(name, as:)
+  def is_subtype?
+    !! @is_subtype
+  end
+
+  def use_defined(type)
     a = self.class.get_defined(name)
     raise "Tried to use an undefined subtype" unless a
     ##

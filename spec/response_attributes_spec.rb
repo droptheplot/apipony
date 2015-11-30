@@ -12,10 +12,11 @@ RSpec.describe Apipony::ResponseAttribute do
         end
       end
       r = Apipony::ResponseAttribute.new :image do
-        use_defined :user_stub, as: :owner
+        attribute :owner, type: :user_stub
       end
-      attrs = r.attributes.first.attributes
-      expect(attrs.map(&:name)).to contain_exactly(:name, :type)
+      attr = r.attributes.first
+      expect(attr.name).to eq(:owner)
+      expect(attr.attributes.map(&:name)).to contain_exactly(:name, :type)
     end
   end
   describe "initialization" do

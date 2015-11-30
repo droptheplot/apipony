@@ -14,7 +14,8 @@ class Apipony::Response
     end
   end
 
-  def attribute(name = nil, **params, &block)
+  def attribute(name, **params, &block)
     @attributes << Apipony::ResponseAttribute.new(name, **params, &block)
   end
+
 end
