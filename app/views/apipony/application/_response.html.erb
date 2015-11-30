@@ -10,12 +10,14 @@
       <% end %>
 
       <% if response.example.body %>
-        <div class="title">Body</title>
-        <pre class="code hljs json"><%= JSON.pretty_generate(response.example.body) %></pre>
+        <div class="panel">
+          <div class="title">Body</div>
+          <pre class="code hljs json"><%= JSON.pretty_generate(response.example.body) %></pre>
+        </div>
       <% end %>
     </div>
   <% end %>
-  
+
   <% if response.attributes.size > 0 %>
     <ul class="response-attributes">
       <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
