@@ -23,5 +23,17 @@ RSpec.describe Apipony::Response do
         }
       })
     end
+    it "allows partial attribute reading" do
+      r = Apipony::Response.new 200 do
+        example do
+          set :body, {
+            name: "test"
+          }
+        end
+        attribute :name
+        attribute :id, example: 1
+      end
+      expect(r.example.body).to eq({name: "test", id: 1})
+    end
   end
 end
