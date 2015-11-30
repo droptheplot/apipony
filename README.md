@@ -47,6 +47,41 @@ end
 
 ## Features
 
+
+### Response Attribute Documentation
+Apipony lets you provide further documentation about the attributes in your
+API's responses. Simply create a new `attribute` inside a `respond_with` block.
+These attributes can even have nested sub-attributes, for documentation of 
+more complex object graphs.
+
+```ruby
+Apipony::Documentation.define do
+  section "Species" do
+    endpoint 'get', '/species/:id' do |e|
+      e.description = "Get information about a species"
+      respond_with 200 do 
+        example do 
+          set :body, {
+            name: "Unicorn",
+            is_pony: true,
+            biology: {
+              has_horn: true,
+              has_wings: false
+            }
+          }
+        end
+        attribute :name, type: :string
+        attribute :is_pony, type: :bool,
+          description: "Is this species a type of pony?"
+        attribute :biology do
+          attribute :has_horn, type: :bool
+          attribute :has_wings, type: :bool
+        end
+      end
+    end
+  end
+end
+```
 ### Predefined Subtypes
 Sometimes, when building an API, it can be useful to store data in a common
 format. Apipony lets you define this common format once, then use it multiple
