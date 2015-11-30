@@ -8,7 +8,13 @@
   <% end %>
 
   <div class="attribute-type">
-    <%= attribute.type %>
+    <% if attribute.is_subtype? %>
+      <%= link_to anchor: "subtype-#{attribute.type}" do %>
+        <%= attribute.type %>
+      <% end %>
+    <% else %>
+      <%= attribute.type %>
+    <% end %> 
   </div>
 
   <% if attribute.is_enum? %>
