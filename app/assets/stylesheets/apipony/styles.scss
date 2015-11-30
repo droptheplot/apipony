@@ -317,10 +317,10 @@ footer {
   flex-flow: row nowrap;
 
   .attribute-enum-member-name {
-    font-weight: 550;
+    font-weight: 400;
     margin-right: 10px;
     flex: 1 1 0;
-    color: lighten($brand_color, 10%);
+    color: $brand_color;
   }
 
   .attribute-enum-member-description {
