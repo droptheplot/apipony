@@ -49,7 +49,74 @@ end
 
 ### Predefined Subtypes
 Sometimes, when building an API, it can be useful to store data in a common
-format. A good example would be a list of something.
+format. Apipony lets you define this common format once, then use it multiple
+times. Check it out:
+
+```ruby
+Apipony::Documentation.define do 
+  subtype :pony_stub do
+    attribute :name, type: :string
+    attribute :id, type: :integer
+  end
+  section "Ponies" do
+    endpoint 'get', '/ponies/:id' do |e|
+      e.description = "Find a pony with a given name"
+      request_with do
+        params :id, example: 10, required: true
+      end
+
+      response_with 200 do
+        example do
+          set :body, {
+            :name => :applejack,
+            :type => :earth,
+            :sex => :female,
+            :occupation => :farmer,
+            :friends => [
+              {name: "Twilight Sparkle", id: 1},
+              {name: "Pinkie Pie", id: 2},
+              {name: "Rainbow Dash", id: 3},
+              {name: "Rarity", id: 4}
+              {name: "Fluttershy", id: 5}
+            ]
+          }
+        end
+      attribute :name, type: :string
+      attribute :kind, type: :enum do
+        choice :alicorn
+        choice :earth
+        choice :unicorn
+        choice :pegasus
+      end
+      attribute :friends, type: :pony_stub, array: true
+      attribute :occupation, type: :string
+    end
+  end
+  section "Locations" do
+    endpoint 'get', '/locations/:id' do |e|
+      e.description = "Information about a location"
+      response_with 200 do
+        example do
+          set :body, {
+            :name => "Crystal Empire",
+            :population => 107,770
+            :rulers => [
+              {name: "Shining Armor", id: 50},
+              {name: "Princess Cadence", id: 90001}
+            ]
+          }
+        end
+        attribute :name, type: :string
+        attribute :population, type: :number
+        attribute :rulers, type: :pony_stub, array: true
+      end
+    end
+  end
+end
+```
+Now, the `friends` attribute of `GET /ponies/:id` and the `rulers` attribute of
+`GET /locations/:id` will reference a common subtype on the generated
+documetnation.
 
 
 Generated documentation example:

@@ -24,7 +24,8 @@ class Apipony::ResponseAttribute
     ## This attribute is of a predefined subtype
     elsif (subtype = self.class.get_defined(@type))
       @attributes = subtype.attributes
-      @array = subtype.is_array?
+      # If the subtype is an array, this is also an array
+      @array = subtype.is_array? unless @array
       @is_subtype = true
     end
   end

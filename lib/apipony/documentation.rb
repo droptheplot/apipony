@@ -14,6 +14,10 @@ class Apipony::Documentation
       @sections << Apipony::Section.new(title, &block)
     end
 
+    def subtype(name, **params, &block)
+      Apipony.define_attribute_type(name, **params, &block)
+    end
+
     def config(&block)
       instance_eval(&block)
     end
