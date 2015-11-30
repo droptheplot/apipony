@@ -13,9 +13,7 @@
             <h2><%= section.title %></h2>
             <% section.endpoints.each do |endpoint| %>
               <div class="endpoint" id="<%= endpoint.id %>">
-                <h3>
-                  <%= render "method", endpoint: endpoint %>
-                </h3>
+                <h3><%= render "method", endpoint: endpoint %></h3>
 
                 <% if endpoint.description %>
                   <div class="description">

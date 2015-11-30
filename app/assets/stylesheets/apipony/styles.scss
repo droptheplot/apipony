@@ -1,15 +1,23 @@
+// Color scheme
 $dark_color: #111;
 $medium_color: #888;
 $light_color: #eee;
 $brand_color: #5e147d;
+
+// Method colors
 $get-color: #1abc9c;
 $post-color: #3498db;
 $put-color: #2980d9;
 $delete-color: #c0392b;
 
-* {
+// Misc. values
+$transition-time: 200ms;
+
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -114,7 +122,7 @@ header {
     color: #fff;
     opacity: 0.7;
     font-size: 12px;
-    transition: 200ms opacity;
+    transition: $transition-time opacity;
 
     &:hover {
       opacity: 1;
@@ -132,9 +140,15 @@ footer {
   border-top: 1px solid $light_color;
   text-align: right;
   font-size: 12px;
+  color: $medium_color;
 
   a {
     color: $medium_color;
+    transition: $transition-time color;
+
+    &:hover {
+      color: $dark-color;
+    }
   }
 }
 
@@ -193,22 +207,22 @@ footer {
   border-radius: 3px;
   margin-right: 5px;
   font-weight: bold;
-  background: $medium_color;
+  background-color: $medium_color;
 
   &.get {
-    background: $get-color;
+    background-color: $get-color;
   }
 
   &.post {
-    background: $post-color;
+    background-color: $post-color;
   }
 
   &.put {
-    background: $put-color;
+    background-color: $put-color;
   }
   
   &.delete {
-    background: $delete-color;
+    background-color: $delete-color;
   }
 }
 
