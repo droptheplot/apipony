@@ -1,18 +1,27 @@
+##
+# A class used to describe an attribute in a response.
 class Apipony::ResponseAttribute
   @type_definitions = {}
   ##
-  # Allow a common subobject definition for code reuse
+  # Allow a common subobject definition for code reuse.
+  # Probably use the `subtype` method in the `subtype` method of the DSL
+  # `define` DSL instead. 
   def self.define_type(name, type)
     @type_definitions[name] = type
   end
 
+  ##
+  # Get a list of predefined subtypes.
+  # Probably use the `
   def self.defined_subtypes
     @type_definitions
   end
-
+  ##
+  # Get a subtype with the given name.
   def self.get_defined(name)
     @type_definitions[name]
   end
+
   attr_accessor :name, :type, :description, :attributes, :choices
   def initialize(name, 
                  type: :string, 
@@ -34,10 +43,24 @@ class Apipony::ResponseAttribute
     end
   end
 
+  ##
+  # Is this attribute an array?
+  # Note that marking an attribute as an array does not over-ride the top-level
+  # type. For example, a definition like:
+  #     attribute :aliases, type: :string, array: true
+  # denotates an array of strings. Also note that subattributes are not
+  # over-ridden. This lets you make an array of objects.
+  #     attribute :users, type: :object, array: true do
+  #       attribute :id, type: :integer
+  #       attribute :name, type: :integer
+  #     end
+  #
   def is_array?
     !! @array
   end
 
+  ##
+  # See if this attribute is a reference to a predefined subtype.
   def is_subtype?
     !! @is_subtype
   end
