@@ -45,6 +45,13 @@ Apipony::Documentation.define do
 end
 ```
 
+## Features
+
+### Predefined Subtypes
+Sometimes, when building an API, it can be useful to store data in a common
+format. A good example would be a list of something.
+
+
 Generated documentation example:
 
 ![Example](https://raw.githubusercontent.com/droptheplot/apipony/master/preview.png)

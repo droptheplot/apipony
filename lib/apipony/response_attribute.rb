@@ -13,17 +13,24 @@ class Apipony::ResponseAttribute
   def initialize(name, 
                  type: :string, 
                  description: "", 
+                 array: false
                  &block)
     @name = name
     @description = description
     @type = type
+    @array = array
     if block_given? 
       instance_eval(&block)
     ## This attribute is of a predefined subtype
     elsif (subtype = self.class.get_defined(@type))
       @attributes = subtype.attributes
+      @array = subtype.is_array?
       @is_subtype = true
     end
+  end
+
+  def is_array?
+    !! @array
   end
 
   def is_subtype?
