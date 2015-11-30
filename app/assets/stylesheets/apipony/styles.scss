@@ -57,6 +57,7 @@ h2 {
 }
 
 h3 {
+  padding-top: 10px;
   font-size: 17px;
   line-height: 16px;
 }
@@ -238,7 +239,7 @@ footer {
   }
 }
 
-.param {
+.parameters, .attributes {
   font-size: 12px;
 
   .name {
@@ -265,33 +266,64 @@ footer {
   
   tr {
     td {
-      padding: 2px 10px;
+      padding: 4px 10px;
     }
   }
 }
 
-.attribute {
+.attribute-container {
   display: flex;
   flex-flow: column nowrap;
-  .attribute-info {
+  
+  .attribute {
     display: flex;
     flex-flow: row nowrap;
-    div {
-      margin-left: 2px;
-      margin-right: 2px;
+    align-items: inherit;
+    justify-content: flex-start;
+    
+    > div {
+      padding: 4px 10px;
+    }
+
+    .attribute-type {
+      flex: 1 1 0;
+    }
+
+    .attribute-name {
+      flex: 2 1 0;
+    }
+
+    .attribute-description {
+      flex: 8 1 0;
     }
   }
+
   ul {
-    margin-left: 30px;
-    list-style-type: none;
+    margin-top: 8px;
+    margin: 8px 10px 8px;
+    padding: 0 12px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+
+    li {
+      list-style: none;
+      margin: 10px 0;
+    }
   }
 }
 
-.attribute-enum-choice{
+.attribute-enum-member {
   display: flex;
   flex-flow: row nowrap;
-  .choice-name{
+
+  .attribute-enum-member-name {
     font-weight: 550;
     margin-right: 10px;
+    flex: 1 1 0;
+    color: lighten($brand_color, 10%);
+  }
+
+  .attribute-enum-member-description {
+    flex: 7 1 0;
   }
 }

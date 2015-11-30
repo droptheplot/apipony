@@ -2,7 +2,6 @@
   <h4>Response: <%= response.status %></h4>
   <% if response.example %>
     <div class="response-example">
-      <h5>Example</h5>
       <%# This is kind of fancy for no reason but whatever %>
       <% if response.example.headers %>
         <div class="title">Headers</div>
@@ -22,7 +21,9 @@
     <div class="panel">
       <div class="title">Attributes</div>
       <div class="table">
-        <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
+        <div class="attributes">
+          <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
+        </div>
       </div>
     </div>
   <% end %>
