@@ -2,7 +2,8 @@ Apipony::Documentation.define do
   config do |c|
     c.title = 'API Documentation'
     c.base_url = '/api/v1'
-  end 
+  end
+
   subtype :pony_stub do
     attribute :name, type: :string
     attribute :id, type: :number
@@ -97,7 +98,7 @@ Apipony::Documentation.define do
         end
       end
     end
-    
+
     endpoint 'get', '/places/:id' do |e|
       e.description = "Info about a place"
       response_with 200 do |r|
