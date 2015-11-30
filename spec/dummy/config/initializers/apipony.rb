@@ -12,8 +12,8 @@ Apipony::Documentation.define do
         param :name, example: :applejack, required: true
       end
 
-      response_with 200 do |r|
-        r.example do 
+      response_with 200 do
+        example do 
           set :body, {
             :name => :applejack,
             :kind => :earth,

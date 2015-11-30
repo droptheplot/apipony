@@ -86,23 +86,7 @@
                   <% end %>
 
                   <% if endpoint.response %>
-                    <div class="response">
-                      <h4>Response&#58; <%= endpoint.response.status %></h4>
-
-                      <% if endpoint.response.body %>
-                        <div class="panel">
-                          <div class="title">Body</div>
-                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
-                        </div>
-                      <% end %>
-
-                      <% if endpoint.response.headers %>
-                        <div class="panel">
-                          <div class="title">Body</div>
-                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
-                        </div>
-                      <% end %>
-                    </div>
+                    <%= render 'response', response: endpoint.response %> 
                   <% end %>
                 <% end %>
               </div>

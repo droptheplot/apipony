@@ -3,7 +3,6 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require 'haml-rails'
 require 'jquery-rails'
 require 'factory_girl_rails'
 require 'database_cleaner'

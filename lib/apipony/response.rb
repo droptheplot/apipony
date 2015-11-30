@@ -7,7 +7,11 @@ class Apipony::Response
   end
 
   def example(&block)
-    @example = Apipony::ExampleResponse.new(&block)
+    if block_given?
+      @example = Apipony::ExampleResponse.new(&block)
+    else
+      @example
+    end
   end
 
   def attribute(name = nil, **params, &block)
