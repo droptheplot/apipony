@@ -27,11 +27,13 @@ class Apipony::ResponseAttribute
                  type: :string, 
                  description: "", 
                  array: false,
+                 example: nil,
                  &block)
     @name = name
     @description = description
     @type = type
     @array = array
+    @example = example
     if block_given? 
       instance_eval(&block)
     ## This attribute is of a predefined subtype
@@ -43,6 +45,25 @@ class Apipony::ResponseAttribute
     end
   end
 
+  ## 
+  # Build an example from this object
+  def example
+    sub = nil
+    if is_object? || is_subtype?
+      sub = Hash[@attributes.select(&:example).map{|a| [a.name, a.example]}]
+    elsif is_enum?
+      sub = choices.sample.name
+    else
+      sub = @example
+    end
+    ## 
+    # If we have an example an are an array
+    if sub and is_array?
+      [sub]
+    else
+      sub
+    end
+  end
   ##
   # Is this attribute an array?
   # Note that marking an attribute as an array does not over-ride the top-level

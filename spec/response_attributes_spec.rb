@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Apipony::ResponseAttribute do 
+RSpec.describe Apipony::ResponseAttribute do
   describe "type definitions" do
     it "allows use of definitions" do
       Apipony.define_attribute_type :user_stub do
@@ -18,7 +18,40 @@ RSpec.describe Apipony::ResponseAttribute do
       expect(attr.name).to eq(:owner)
       expect(attr.attributes.map(&:name)).to contain_exactly(:name, :type)
     end
+    it "works with examples" do
+      Apipony.define_attribute_type :user_stub do 
+        attribute :name, description: "A user's name", example: "Foo"
+        attribute :id, description: "A user's ID", example: 1
+      end
+      r = Apipony::Response.new 200 do 
+        attribute :id, type: :string, example: 10
+        attribute :owner, type: :user_stub
+      end
+      expect(r.example.body).to eq({
+        id: 10,
+        owner: {
+          name: "Foo",
+          id: 1
+        }
+      })
+    end
   end
+  describe "examples" do
+    it "wraps them in an array when the object is an array" do
+      r = Apipony::ResponseAttribute.new :test, type: :enum do
+        choice :foo
+      end
+      expect(r.example).to eq(:foo)
+    end
+    it "wraps array examples in arrays" do
+      r = Apipony::ResponseAttribute.new :test, 
+        type: :string,
+        example: "Foo",
+        array: true
+      expect(r.example).to eq(["Foo"])
+    end
+  end
+
   describe "initialization" do
     it "has default arguments for all named paramters" do
       r = Apipony::ResponseAttribute.new(:test)
