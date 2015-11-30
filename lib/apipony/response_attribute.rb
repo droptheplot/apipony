@@ -17,7 +17,7 @@ class Apipony::ResponseAttribute
   def initialize(name, 
                  type: :string, 
                  description: "", 
-                 array: false
+                 array: false,
                  &block)
     @name = name
     @description = description

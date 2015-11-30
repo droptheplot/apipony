@@ -2,6 +2,10 @@ Apipony::Documentation.define do
   config do |c|
     c.title = 'API Documentation'
     c.base_url = '/api/v1'
+  end 
+  subtype :pony_stub do
+    attribute :name, type: :string
+    attribute :id, type: :number
   end
 
   section 'Ponies' do
@@ -33,9 +37,9 @@ Apipony::Documentation.define do
           choice :alicorn, description: %{
             A pony with wings and a horn. This also indicates that the pony
             is royalty of some sort.
-          }
-        
+          }      
         end
+        attribute :friends, array: true, type: :pony_stub
       end
     end
 
@@ -71,6 +75,25 @@ Apipony::Documentation.define do
   end
 
   section 'Places' do
+    endpoint 'get', '/places/id' do |e|
+      e.description = "Info about a place"
+      response_with 200 do |r|
+        r.example do
+          set :body, {
+            name: "Crystal Empire",
+            population: 107706,
+            rulers: [
+              {id: 10, name: "Shining Armor"},
+              {id: 100, name: "Princess Cadence"}
+            ]
+          }
+        end
+        attribute :name, type: :string
+        attribute :rulers, array: true, type: :pony_stub
+        attribute :population, type: :number
+      end
+    end
+
     endpoint 'get', '/places' do |e|
       e.description = 'Get places'
 
