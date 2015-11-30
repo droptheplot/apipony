@@ -1,0 +1,16 @@
+<li class="attribute">
+<div class="attribute-name"><%= at.name %></div>
+<% if at.description %>
+  <div class="attribute-description"><%= at.description %></div>
+<% end %>
+<div class="attribute-type"><%= at.type %></div>
+<% if at.is_enum? %>
+  <ul class="attribute-enum-list">
+    <% at.choices.each do |c| %>
+      <li class="attribute-enum-choice">
+      <div class="choice-name"><%= c.name %></div>
+      <div class="choice-description"><%= c.description %></div>
+    <% end %>
+  </ul>
+<% end %> 
+</li>

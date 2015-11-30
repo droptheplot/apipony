@@ -23,6 +23,7 @@ class Apipony::ResponseAttribute
 
   def choice(name, **params)
     @choices ||= []
+    @type = :enum
     @choices << EnumChoice.new(name, **params)
   end
 
