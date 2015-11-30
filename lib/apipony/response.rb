@@ -1,9 +1,14 @@
-class Apipony::Response < Apipony::Base
-  attr_accessor :status, :headers, :body
+class Apipony::Response
+  attr_accessor :example, :attributes
+  def initialize(&block)
+    instance_eval(&block)
+  end
 
-  def initialize(status, &block)
-    @status = status
+  def example(&block)
+    @example = Apipony::ExampleResponse.new(&block)
+  end
 
-    instance_eval(&block) if block_given?
+  def attribute(name = nil, **params, &block)
+    
   end
 end
