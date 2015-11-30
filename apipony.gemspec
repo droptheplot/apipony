@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails', '~> 4.0.4'
 
   s.add_development_dependency 'sqlite3', '~> 1.3.11'
+  s.add_development_dependency 'yard'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'faker', '~> 1.6', '>= 1.6.1'
   s.add_development_dependency 'rspec-rails', '~> 3.4', '>= 3.4.0'
