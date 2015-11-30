@@ -83,8 +83,14 @@ Apipony::Documentation.define do
             name: "Crystal Empire",
             population: 107706,
             rulers: [
-              {id: 10, name: "Shining Armor"},
-              {id: 100, name: "Princess Cadence"}
+              {
+                :id => 10,
+                :name => "Shining Armor"
+              },
+              {
+                :id => 100,
+                :name => "Princess Cadence"
+              }
             ]
           }
         end
