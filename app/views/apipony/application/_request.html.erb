@@ -1,0 +1,37 @@
+<div class="request">
+  <h4>Request&#58;</h4>
+  <% if endpoint.request.params %>
+    <div class="panel">
+      <div class="title">Parameters</div>
+      <table class="table">
+        <% endpoint.request.params.each do |param| %>
+          <tr class="parameters">
+            <td class="name">
+              <%= param.name %>
+            </td>
+            <td class="type">
+              <%= param.type %>
+            </td>
+            <td class="required">
+              <% if param.required %>
+                <i class="fa fa-check-square-o" title="Required"></i>
+              <% else %>
+                <i class="fa fa-square-o" title="Optional"></i>
+              <% end %>
+            </td>
+            <td class="example">
+              <%= param.example %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+  <% if endpoint.request.headers %>
+    <div class="panel">
+      <div class="title">Headers</div>
+      <pre class="code"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
+    </div>
+  <% end %>
+</div>

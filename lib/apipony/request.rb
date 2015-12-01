@@ -1,12 +1,21 @@
+##
+# Model a request that an API user can make.
+# Includes information about required parameters and required headers
 class Apipony::Request < Apipony::Base
-  attr_accessor :params, :headers
+  ##
+  # :nodoc:
+  attr_accessor :params
+  ##
+  #:nodoc:
+  attr_accessor :headers
 
   def initialize(&block)
     @params = []
 
     instance_eval(&block)
   end
-
+  ##
+  # Construct a new parameter
   def param(name, 
             example: '', 
             type: :string, 

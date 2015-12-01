@@ -1,9 +1,0 @@
-- sections.each do |section|
-  %h4= section.title
-  %ul
-    - section.endpoints.each do |endpoint|
-      %li
-        %h5
-          = link_to root_path(:anchor => endpoint.id) do
-            = render 'method', method: endpoint.method
-            = endpoint.url

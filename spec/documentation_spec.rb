@@ -11,7 +11,6 @@ describe Apipony::Documentation do
       section 'Ponies' do
         endpoint 'get', '/ponies' do |e|
           e.description = 'Find ponies'
-
           request_with do
             param :name, 
               example: 'applejack', 
@@ -20,13 +19,19 @@ describe Apipony::Documentation do
               description: "The name of a given pony"
           end
 
-          response_with 200 do
-            set :body, {
-              :name => :applejack,
-              :kind => :earth,
-              :sex => :female,
-              :occupation => :farmer
-            }
+          response_with 200 do |r|
+            r.example do 
+              set :body, {
+                :name => :applejack,
+                :kind => :earth,
+                :sex => :female,
+                :occupation => :farmer
+              }
+            end
+            attribute :name, type: :string, description: "This pony's name"
+            attribute :kind do |a|
+              a.type = :string
+            end
           end
         end
       end

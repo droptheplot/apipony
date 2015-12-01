@@ -4,6 +4,11 @@ Apipony::Documentation.define do
     c.base_url = '/api/v1'
   end
 
+  subtype :pony_stub do
+    attribute :name, type: :string, example: "Applejack"
+    attribute :id, type: :number, example: 10
+  end
+
   section 'Ponies' do
     endpoint 'get', '/ponies' do |e|
       e.description = 'Find ponies'
@@ -13,12 +18,23 @@ Apipony::Documentation.define do
       end
 
       response_with 200 do
-        set :body, {
-          :name => :applejack,
-          :kind => :earth,
-          :sex => :female,
-          :occupation => :farmer
-        }
+        attribute :sex, description: "What sex is this pony?",
+          example: "Female"
+        attribute :name, description: "This pony's given name.",
+          example: "Twilight Sparkle"
+        attribute :occupation, description: %{
+          A short string describing what occupation this pony has.
+        }, example: "Princess"
+        attribute :kind do
+          choice :alicorn, description: %{
+            A pony with wings and a horn. This also indicates that the pony
+            is royalty of some sort.
+          }
+          choice :unicorn, description: "A pony with a horn."
+          choice :earth, description: "A pony with no horn or wings."
+          choice :pegasus, description: "A pony with wings."      
+        end
+        attribute :friends, array: true, type: :pony_stub
       end
     end
 
@@ -36,7 +52,7 @@ Apipony::Documentation.define do
     end
 
     endpoint 'put', '/ponies/:id' do |e|
-      e.description = 'Update pony id'
+      e.description = 'Update pony by id'
 
       request_with do
         param :name
@@ -57,7 +73,8 @@ Apipony::Documentation.define do
     endpoint 'get', '/places' do |e|
       e.description = 'Get places'
 
-      response_with 200 do
+      response_with 200 do |r|
+        r.example do 
         set :body, [
           {
             :id => 1,
@@ -72,6 +89,32 @@ Apipony::Documentation.define do
             :name => :canterlot
           }
         ]
+        end
+      end
+    end
+
+    endpoint 'get', '/places/:id' do |e|
+      e.description = "Info about a place"
+      response_with 200 do |r|
+        r.example do
+          set :body, {
+            name: "Crystal Empire",
+            population: 107706,
+            rulers: [
+              {
+                :id => 10,
+                :name => "Shining Armor"
+              },
+              {
+                :id => 100,
+                :name => "Princess Cadence"
+              }
+            ]
+          }
+        end
+        attribute :name, type: :string
+        attribute :rulers, array: true, type: :pony_stub
+        attribute :population, type: :number
       end
     end
   end
