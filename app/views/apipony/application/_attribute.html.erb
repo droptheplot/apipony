@@ -24,7 +24,7 @@
       <div class="title">Possible values</div>
       <% attribute.choices.each do |choice| %>
         <li class="attribute-enum-member">
-          <div class="attribute-enum-member-name attribute-enum-member-name"><%= choice.name %></div>
+          <div class="attribute-enum-member-name"><%= choice.name %></div>
           <div class="attribute-enum-member-description"><%= choice.description %></div>
         </li>
       <% end %>
@@ -32,7 +32,8 @@
   <% end %>
 
   <% if attribute.is_object? %>
-    <ul class="attributes-list">
+    <ul class="attribute-object-list">
+      <div class="title">Child attributes</div>
       <%= render partial: "attribute",
       collection: attribute.attributes,
       as: :attribute %>
