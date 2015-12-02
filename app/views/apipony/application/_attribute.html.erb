@@ -6,7 +6,7 @@
 
     <div class="attribute-type type">
       <% if attribute.is_subtype? %>
-        <%= link_to anchor: "subtype-#{attribute.type}" do %>
+        <%= link_to root_path(:anchor => "subtype-#{attribute.type}") do %>
           <%= attribute.type %>
         <% end %>
       <% else %>
