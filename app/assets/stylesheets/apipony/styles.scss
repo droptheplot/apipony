@@ -300,8 +300,7 @@ footer {
   }
 
   ul {
-    margin-top: 8px;
-    margin: 8px 10px 8px;
+    margin: 8px 10px;
     border: 1px solid #e1e1e1;
     border-radius: 3px;
 
@@ -335,4 +334,8 @@ footer {
   .attribute-enum-member-description {
     flex: 7 1 0;
   }
+}
+
+.subtype {
+  margin-bottom: 25px;
 }
