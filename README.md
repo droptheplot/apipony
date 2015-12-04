@@ -6,15 +6,15 @@
 
 Ruby DSL to create Rails API documentation from your application.
 
-## Getting started
 
+## Getting started
 * Add `gem 'apipony'` to Gemfile
 * `bundle install`
 * `rails g apipony:install`
 * Now you can edit your documentation in `config/initializers/apipony.rb`
 
-## How it works
 
+## How it works
 DSL example:
 
 ```ruby
@@ -45,8 +45,8 @@ Apipony::Documentation.define do
 end
 ```
 
-## Features
 
+## Features
 
 ### Response Attribute Documentation
 Apipony lets you provide further documentation about the attributes in your
@@ -82,23 +82,25 @@ Apipony::Documentation.define do
   end
 end
 ```
+
 ### Enum Attributes
 Your API may have some fields that can be picked from a pre-defined set of
 values. You can document those values by using an enum attribute.
 
-
 ```ruby
 Apipony::Documentation.define do
-  section "Poines" do
+  section "Ponies" do
     endpoint "get", "/ponies/:id" do |e|
       e.description = "Information about a pony"
       example do 
         set :body, {
           name: "Applejack",
           sex: "female",
-          kind: :earth
+          kind: :earth,
           occupation: :farmer
         }
+      end
+
       attribute :kind, type: :enum do
         choice :earth, description: "A pony with no wings or horn"
         choice :unicorn, description: "A pony with a horn"
@@ -122,7 +124,7 @@ Apipony::Documentation.define do
     endpoint "get", "/ponies/:id" do |e|
       respond_with 200 do
         attribute :name, type: :string, example: "Applejack"
-        # Enums members automatically select the first choice
+        # Enum members automatically select the first choice
         attribute :kind, type: :enum do
           choice :earth
           choice :pegasus
@@ -131,16 +133,18 @@ Apipony::Documentation.define do
         end
       end
     end
+
     endpoint "get", "/ponies/" do |e|
       # Automatic serialization of arrays is supported
       respond_with 200, array: true do
         attribute :name, type: :string, example: "Applejack"
-        attribute :id, type: :number, example: 10
+        attribute :id, type: :integer, example: 10
       end
     end
   end
 end
 ```
+
 `GET /ponies/:id` will now have the example of:
 
 ```json
@@ -149,6 +153,7 @@ end
   "kind": "Earth"
 }
 ```
+
 `GET /ponies/` will have the example of:
 
 ```json
@@ -171,6 +176,7 @@ Apipony::Documentation.define do
     attribute :name, type: :string
     attribute :id, type: :integer
   end
+
   section "Ponies" do
     endpoint 'get', '/ponies/:id' do |e|
       e.description = "Find a pony with a given name"
@@ -189,7 +195,7 @@ Apipony::Documentation.define do
               {name: "Twilight Sparkle", id: 1},
               {name: "Pinkie Pie", id: 2},
               {name: "Rainbow Dash", id: 3},
-              {name: "Rarity", id: 4}
+              {name: "Rarity", id: 4},
               {name: "Fluttershy", id: 5}
             ]
           }
@@ -205,6 +211,7 @@ Apipony::Documentation.define do
       attribute :occupation, type: :string
     end
   end
+
   section "Locations" do
     endpoint 'get', '/locations/:id' do |e|
       e.description = "Information about a location"
@@ -212,24 +219,31 @@ Apipony::Documentation.define do
         example do
           set :body, {
             :name => "Crystal Empire",
-            :population => 107,770
+            :population => 107770,
             :rulers => [
-              {name: "Shining Armor", id: 50},
-              {name: "Princess Cadence", id: 90001}
+              {
+                name: "Shining Armor",
+                id: 50
+              },
+              {
+                name: "Princess Cadence",
+                id: 90001
+              }
             ]
           }
         end
         attribute :name, type: :string
-        attribute :population, type: :number
+        attribute :population, type: :integer
         attribute :rulers, type: :pony_stub, array: true
       end
     end
   end
 end
 ```
+
 Now, the `friends` attribute of `GET /ponies/:id` and the `rulers` attribute of
 `GET /locations/:id` will reference a common subtype on the generated
-documetnation.
+documentation.
 
 
 Generated documentation example:

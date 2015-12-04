@@ -34,9 +34,10 @@
             <% end %>
           </div>
         <% end %>
+        
         <div id="defined_subtypes">
           <% @documentation.subtypes.each do |name, type| %>
-            <div id="subtype-<%= name %>">
+            <div class="subtype" id="subtype-<%= name %>">
               <h4><%= name %></h4>
               <div class="panel">
                 <div class="title">Attributes</div>
@@ -47,6 +48,7 @@
                     as: :attribute %>
                   </div>
                 </div>
+              </div>
             </div>
           <% end %>
         </div>

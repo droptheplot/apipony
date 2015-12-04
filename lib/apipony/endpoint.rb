@@ -25,8 +25,8 @@ class Apipony::Endpoint < Apipony::Base
 
   ##
   # DSL method to start describing a response
-  def response_with(status, &block)
-    @response = Apipony::Response.new(status, &block)
+  def response_with(status, **params, &block)
+    @response = Apipony::Response.new(status, **params, &block)
   end
 
   ##
