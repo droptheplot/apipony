@@ -33,12 +33,10 @@ Apipony::Documentation.define do
       end
 
       response_with 200 do
-        set :body, {
-          :name => :applejack,
-          :kind => :earth,
-          :sex => :female,
-          :occupation => :farmer
-        }
+        attribute :name, type: :string, example: 'applejack'
+        attribute :kind, type: :string, example: 'earth'
+        attribute :sex, type: :string, example: 'female'
+        attribute :occupation, type: :string, example: 'farmer'
       end
     end
   end
@@ -50,8 +48,8 @@ end
 
 ### Response Attribute Documentation
 Apipony lets you provide further documentation about the attributes in your
-API's responses. Simply create a new `attribute` inside a `respond_with` block.
-These attributes can even have nested sub-attributes, for documentation of 
+API's responses. Simply create a new `attribute` inside a `response_with` block.
+These attributes can even have nested sub-attributes, for documentation of
 more complex object graphs.
 
 ```ruby
@@ -59,8 +57,8 @@ Apipony::Documentation.define do
   section "Species" do
     endpoint 'get', '/species/:id' do |e|
       e.description = "Get information about a species"
-      respond_with 200 do 
-        example do 
+      response_with 200 do
+        example do
           set :body, {
             name: "Unicorn",
             is_pony: true,
@@ -92,7 +90,7 @@ Apipony::Documentation.define do
   section "Ponies" do
     endpoint "get", "/ponies/:id" do |e|
       e.description = "Information about a pony"
-      example do 
+      example do
         set :body, {
           name: "Applejack",
           sex: "female",
@@ -115,14 +113,14 @@ end
 
 ### Example Generation
 When describing attributes, you can provide an optional `example:` parameter.
-If included, this will be used to generate the example response in the 
-documentation. 
+If included, this will be used to generate the example response in the
+documentation.
 
 ```ruby
 Apipony::Documentation.define do
   section "Ponies" do
     endpoint "get", "/ponies/:id" do |e|
-      respond_with 200 do
+      response_with 200 do
         attribute :name, type: :string, example: "Applejack"
         # Enum members automatically select the first choice
         attribute :kind, type: :enum do
@@ -136,7 +134,7 @@ Apipony::Documentation.define do
 
     endpoint "get", "/ponies/" do |e|
       # Automatic serialization of arrays is supported
-      respond_with 200, array: true do
+      response_with 200, array: true do
         attribute :name, type: :string, example: "Applejack"
         attribute :id, type: :integer, example: 10
       end
@@ -171,7 +169,7 @@ format. Apipony lets you define this common format once, then use it multiple
 times. Check it out:
 
 ```ruby
-Apipony::Documentation.define do 
+Apipony::Documentation.define do
   subtype :pony_stub do
     attribute :name, type: :string
     attribute :id, type: :integer
