@@ -38,7 +38,7 @@ class Apipony::Endpoint < Apipony::Base
   ##
   # Create a unique identifier for this endpoint
   def id
-    File.join(@method, @url)
+    File.join(@method.to_s, @url)
   end
 
   private

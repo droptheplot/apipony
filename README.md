@@ -25,7 +25,7 @@ Apipony::Documentation.define do
   end
 
   section 'Ponies' do
-    endpoint 'get', '/ponies' do |e|
+    endpoint :get, '/ponies' do |e|
       e.description = 'Find ponies'
 
       request_with do
