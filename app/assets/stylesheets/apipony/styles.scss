@@ -102,11 +102,18 @@ ul {
 }
 
 .sidebar {
-  flex: 1 120px;
+  flex: 1 80px;
+  margin-right: 40px;
 
   @media all and (max-width: $mobile-width) {
     flex: 1 100%;
     margin-bottom: 30px;
+  }
+
+  h5 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: auto;
   }
 }
 
@@ -233,7 +240,7 @@ footer {
   &.put {
     background-color: $put-color;
   }
-  
+
   &.delete {
     background-color: $delete-color;
   }
@@ -254,7 +261,7 @@ footer {
 
   .required {
     text-align: center;
-  
+
     .fa {
       color: $medium_color;
     }
@@ -263,7 +270,7 @@ footer {
 
 .table {
   padding: 8px 0;
-  
+
   tr {
     td {
       padding: 4px 10px;
@@ -274,13 +281,13 @@ footer {
 .attribute-container {
   display: flex;
   flex-flow: column nowrap;
-  
+
   .attribute {
     display: flex;
     flex-flow: row nowrap;
     align-items: inherit;
     justify-content: flex-start;
-    
+
     > div {
       padding: 4px 10px;
     }
