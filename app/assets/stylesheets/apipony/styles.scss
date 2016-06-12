@@ -184,7 +184,7 @@ footer {
       margin-bottom: 40px;
     }
 
-    .description {
+    > .description {
       font-size: 12px;
       color: $medium_color;
       padding-top: 20px;
@@ -245,7 +245,7 @@ footer {
   }
 }
 
-.parameters {
+.parameter {
   font-size: 12px;
 
   .name {
@@ -262,6 +262,12 @@ footer {
     text-align: center;
 
     .fa {
+      color: $medium_color;
+    }
+  }
+
+  > .description {
+    .example {
       color: $medium_color;
     }
   }

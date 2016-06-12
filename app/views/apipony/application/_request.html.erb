@@ -1,6 +1,6 @@
 <div class="request">
   <h4>Request&#58;</h4>
-  
+
   <% if endpoint.request.data.headers %>
     <div class="panel">
       <div class="title">Headers</div>
@@ -13,7 +13,7 @@
       <div class="title">Parameters</div>
       <table class="table">
         <% endpoint.request.data.params.each do |param| %>
-          <tr class="parameters">
+          <tr class="parameter">
             <td class="name">
               <%= param.name %>
             </td>
@@ -27,8 +27,13 @@
                 <i class="fa fa-square-o" title="Optional"></i>
               <% end %>
             </td>
-            <td class="example">
-              <%= param.example %>
+            <td class="description">
+              <%= param.description %>
+              <% if param.example %>
+                <span class="example">
+                  (example: <strong><%= param.example %></strong>)
+                </span>
+              <% end %>
             </td>
           </tr>
         <% end %>
