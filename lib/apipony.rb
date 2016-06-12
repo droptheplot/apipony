@@ -1,6 +1,7 @@
 require 'apipony/engine'
 
 require 'apipony/shared/headers'
+require 'apipony/shared/description'
 
 require 'apipony/documentation'
 require 'apipony/section'

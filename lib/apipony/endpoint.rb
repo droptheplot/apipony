@@ -1,16 +1,13 @@
 ##
 # Model a response endpoint.
 class Apipony::Endpoint
+  include Apipony::Shared::Description
   ##
   # What HTTP verb to use to access this endpoint
   attr_accessor :method
   ##
   # The URl of this endpoint
   attr_accessor :url
-
-  ##
-  # A short description of what this endpoint does and why it may be useful.
-  attr_accessor :description
 
   attr_accessor :response, :request
 
@@ -31,10 +28,6 @@ class Apipony::Endpoint
   # DSL method to start describind a request
   def request_with(&block)
     @request = Apipony::Request.new(&block)
-  end
-
-  def description(value)
-    @description = value
   end
 
   ##
