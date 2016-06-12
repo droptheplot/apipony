@@ -57,7 +57,7 @@ h2 {
 }
 
 h3 {
-  padding-top: 10px;
+  margin-bottom: 20px;
   font-size: 17px;
   line-height: 16px;
 }
@@ -184,15 +184,8 @@ footer {
       margin-bottom: 40px;
     }
 
-    > .description {
-      font-size: 12px;
-      color: $medium_color;
-      padding-top: 20px;
-      font-weight: normal;
-    }
-
     .response, .request {
-      padding-top: 20px;
+      padding-bottom: 20px;
 
       .code {
         padding: 8px 10px 10px;
@@ -200,6 +193,13 @@ footer {
         border-radius: 0 0 3px 3px;
       }
     }
+  }
+
+  > .description, .endpoint > .description {
+    font-size: 12px;
+    color: $medium_color;
+    padding-bottom: 20px;
+    font-weight: normal;
   }
 }
 
