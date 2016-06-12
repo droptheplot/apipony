@@ -1,8 +1,13 @@
 <header>
   <div class="container">
-    <%= link_to @documentation.data.title, root_path, class: 'title' %>
-    <% if main_app.root_path %>
-      <%= link_to 'Back to site', main_app.root_path, class: 'back' %>
-    <% end %>
+    <div class="row">
+      <%= link_to @documentation.data.title, root_path, class: 'title' %>
+      <% if main_app.root_path %>
+        <%= link_to main_app.root_path, class: 'back' do %>
+          <i class='fa fa-home'></i>
+          Home
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </header>

@@ -126,22 +126,21 @@ ul {
 }
 
 header {
-  background: $brand_color;
   height: 60px;
   line-height: 60px;
+  border-bottom: 1px solid $light_color;
 
   .title {
     font-weight: bold;
-    font-size: 20px;
-    color: #fff;
+    font-size: 17px;
   }
 
   .back {
     float: right;
-    color: #fff;
     opacity: 0.7;
     font-size: 12px;
     transition: $transition-time opacity;
+    margin-left: auto;
 
     &:hover {
       opacity: 1;
