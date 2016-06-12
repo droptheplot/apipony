@@ -5,14 +5,14 @@ $light_color: #eee;
 $brand_color: #5e147d;
 
 // Method colors
-$get-color: #1abc9c;
-$post-color: #3498db;
-$put-color: #2980d9;
-$delete-color: #c0392b;
+$get_color: #1abc9c;
+$post_color: #3498db;
+$put_color: #2980d9;
+$delete_color: #c0392b;
 
 // Misc. values
-$transition-time: 200ms;
-$mobile-width: 900px;
+$transition_time: 200ms;
+$mobile_width: 900px;
 
 
 *, *::before, *::after {
@@ -96,7 +96,7 @@ ul {
   display: flex;
   flex-flow: row nowrap;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-width: $mobile_width) {
     flex-flow: row wrap;
   }
 }
@@ -105,7 +105,7 @@ ul {
   flex: 1 80px;
   margin-right: 40px;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-width: $mobile_width) {
     flex: 1 100%;
     margin-bottom: 30px;
   }
@@ -120,7 +120,7 @@ ul {
 .main-col {
   flex: 8;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-width: $mobile_width) {
     flex: 1 100%;
   }
 }
@@ -139,7 +139,7 @@ header {
     float: right;
     opacity: 0.7;
     font-size: 12px;
-    transition: $transition-time opacity;
+    transition: $transition_time opacity;
     margin-left: auto;
 
     &:hover {
@@ -162,7 +162,7 @@ footer {
 
   a {
     color: $medium_color;
-    transition: $transition-time color;
+    transition: $transition_time color;
 
     &:hover {
       color: $dark-color;
@@ -229,19 +229,19 @@ footer {
   background-color: $medium_color;
 
   &.get {
-    background-color: $get-color;
+    background-color: $get_color;
   }
 
   &.post {
-    background-color: $post-color;
+    background-color: $post_color;
   }
 
   &.put {
-    background-color: $put-color;
+    background-color: $put_color;
   }
 
   &.delete {
-    background-color: $delete-color;
+    background-color: $delete_color;
   }
 }
 
