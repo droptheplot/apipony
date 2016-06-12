@@ -4,8 +4,10 @@
     <div class="response-example">
       <%# This is kind of fancy for no reason but whatever %>
       <% if response.data.headers %>
-        <div class="title">Headers</div>
-        <pre class="code hljs json"><%= JSON.pretty_generate(response.data.headers) %></pre>
+        <div class="panel">
+          <div class="title">Headers</div>
+          <pre class="code hljs json"><%= JSON.pretty_generate(response.data.headers) %></pre>
+        </div>
       <% end %>
 
       <% if response.data.body %>
