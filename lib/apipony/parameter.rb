@@ -8,4 +8,6 @@ class Apipony::Parameter
     @type = params.fetch(:type, :string)
     @required = params.fetch(:required, false)
   end
+
+  alias_method :required?, :required
 end

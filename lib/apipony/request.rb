@@ -19,4 +19,8 @@ class Apipony::Request
   def param(name, *params)
     @params << Apipony::Parameter.new(name, *params)
   end
+
+  def params
+    @params.sort_by { |e| e.required? ? -1 : 0 }
+  end
 end
