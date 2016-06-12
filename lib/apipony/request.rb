@@ -20,7 +20,20 @@ class Apipony::Request
     @params << Apipony::Parameter.new(name, *params)
   end
 
-  def params
-    @params.sort_by { |e| e.required? ? -1 : 0 }
+  def headers
+    @headers = yield if block_given?
   end
+
+  def data
+    OpenStruct.new(
+      headers: @headers,
+      params: params
+    )
+  end
+
+  private
+
+    def params
+      @params.sort_by { |e| e.required? ? -1 : 0 }
+    end
 end

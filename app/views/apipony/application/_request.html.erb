@@ -1,10 +1,18 @@
 <div class="request">
   <h4>Request&#58;</h4>
-  <% if endpoint.request.params %>
+  
+  <% if endpoint.request.data.headers %>
+    <div class="panel">
+      <div class="title">Headers</div>
+      <pre class="code"><%= JSON.pretty_generate(endpoint.request.data.headers) %></pre>
+    </div>
+  <% end %>
+
+  <% if endpoint.request.data.params %>
     <div class="panel">
       <div class="title">Parameters</div>
       <table class="table">
-        <% endpoint.request.params.each do |param| %>
+        <% endpoint.request.data.params.each do |param| %>
           <tr class="parameters">
             <td class="name">
               <%= param.name %>
@@ -25,13 +33,6 @@
           </tr>
         <% end %>
       </table>
-    </div>
-  <% end %>
-
-  <% if endpoint.request.headers %>
-    <div class="panel">
-      <div class="title">Headers</div>
-      <pre class="code"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
     </div>
   <% end %>
 </div>
