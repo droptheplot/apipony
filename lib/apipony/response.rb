@@ -1,51 +1,31 @@
 class Apipony::Response
-  attr_accessor :example, :attributes, :status
-  def initialize(status, array: false, &block)
-    @status = status
-    @attributes = []
-    @array = array
-    instance_eval(&block) if block_given?
+  attr_accessor :status, :headers, :body
+
+  def initialize(&block)
+    instance_eval(&block)
   end
 
-  def is_array?
-    !! @array
+  def status(code)
+    @status = code
   end
 
-  def example(&block)
-    if block_given?
-      @example = Apipony::ExampleResponse.new(&block)
-    else
-      find_example
-    end
+  def headers
+    @headers = yield if block_given?
   end
 
-  def attribute(name, **params, &block)
-    if params[:example]
-      @use_attribute_examples = true
-    end
-    @attributes << Apipony::ResponseAttribute.new(name, **params, &block)
-  end
-  private
-  def find_example
-    if @use_attribute_examples
-      build_example_from_attributes
-    end
-    @example
+  def body
+    @body = yield if block_given?
   end
 
-  def build_example_from_attributes
-    build = Hash.new
-    @attributes.each do |attr|
-      build[attr.name] = attr.example if attr.example
-    end
-    @example ||= Apipony::ExampleResponse.new
-    case @example.body
-    when Hash
-      @example.body.merge! build
-      @example.body = [@example.body] if is_array?
-    when NilClass
-      @example.body = (is_array? ? [build] : build)
-    end
-    @example
+  def data?
+    !(@status.nil? && @body.nil?)
+  end
+
+  def data
+    OpenStruct.new(
+      status: @status,
+      headers: @headers,
+      body: @body
+    )
   end
 end

@@ -1,30 +1,19 @@
 <div class="response">
-  <h4>Response: <%= response.status %></h4>
-  <% if response.example %>
+  <h4>Response: <%= response.data.status %></h4>
+  <% if response.data? %>
     <div class="response-example">
       <%# This is kind of fancy for no reason but whatever %>
-      <% if response.example.headers %>
+      <% if response.data.headers %>
         <div class="title">Headers</div>
-        <pre class="code hljs json"><%= JSON.pretty_generate(response.example.headers) %></pre>
+        <pre class="code hljs json"><%= JSON.pretty_generate(response.data.headers) %></pre>
       <% end %>
 
-      <% if response.example.body %>
+      <% if response.data.body %>
         <div class="panel">
           <div class="title">Body</div>
-          <pre class="code hljs json"><%= JSON.pretty_generate(response.example.body) %></pre>
+          <pre class="code hljs json"><%= JSON.pretty_generate(response.data.body) %></pre>
         </div>
       <% end %>
-    </div>
-  <% end %>
-
-  <% if response.attributes.size > 0 %>
-    <div class="panel">
-      <div class="title">Attributes</div>
-      <div class="table">
-        <div class="attributes">
-          <%= render partial: 'attribute', collection: response.attributes, as: :attribute %>
-        </div>
-      </div>
     </div>
   <% end %>
 </div>
