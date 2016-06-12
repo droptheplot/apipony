@@ -2,11 +2,13 @@ class Apipony::Response
   attr_accessor :status, :headers, :body
 
   def initialize(&block)
+    @status = 200
+
     instance_eval(&block)
   end
 
   def status(code)
-    @status = code
+    @status = code if code
   end
 
   def headers
