@@ -2,12 +2,11 @@
 # Model a request that an API user can make.
 # Includes information about required parameters and required headers
 class Apipony::Request
+  include Apipony::Shared::Headers
+
   ##
   # :nodoc:
   attr_accessor :params
-  ##
-  #:nodoc:
-  attr_accessor :headers
 
   def initialize(&block)
     @params = []
@@ -18,10 +17,6 @@ class Apipony::Request
   # Construct a new parameter
   def param(name, *params)
     @params << Apipony::Parameter.new(name, *params)
-  end
-
-  def headers
-    @headers = yield if block_given?
   end
 
   def data

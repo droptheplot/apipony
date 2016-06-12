@@ -1,5 +1,7 @@
 class Apipony::Response
-  attr_accessor :status, :headers, :body
+  include Apipony::Shared::Headers
+
+  attr_accessor :status, :body
 
   def initialize(&block)
     @status = 200
@@ -9,10 +11,6 @@ class Apipony::Response
 
   def status(code)
     @status = code if code
-  end
-
-  def headers
-    @headers = yield if block_given?
   end
 
   def body
