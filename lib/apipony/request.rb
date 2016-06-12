@@ -16,11 +16,7 @@ class Apipony::Request < Apipony::Base
   end
   ##
   # Construct a new parameter
-  def param(name, 
-            example: '', 
-            type: :string, 
-            required: false,
-            description: '')
-    @params << Apipony::Parameter.new(name, example, type, required, description)
+  def param(name, *params)
+    @params << Apipony::Parameter.new(name, *params)
   end
 end
