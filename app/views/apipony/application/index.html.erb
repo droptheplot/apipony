@@ -15,9 +15,9 @@
               <div class="endpoint" id="<%= endpoint.id %>">
                 <h3><%= render "method", endpoint: endpoint %></h3>
 
-                <% if endpoint.description %>
+                <% if endpoint.data.description %>
                   <div class="description">
-                    <%= endpoint.description %>
+                    <%= endpoint.data.description %>
                   </div>
                 <% end %>
 
