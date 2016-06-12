@@ -27,31 +27,13 @@
                   <% end %>
 
                   <% if endpoint.response %>
-                    <%= render "response", response: endpoint.response %> 
+                    <%= render "response", response: endpoint.response %>
                   <% end %>
                 <% end %>
               </div>
             <% end %>
           </div>
         <% end %>
-        
-        <div id="defined_subtypes">
-          <% @documentation.subtypes.each do |name, type| %>
-            <div class="subtype" id="subtype-<%= name %>">
-              <h4><%= name %></h4>
-              <div class="panel">
-                <div class="title">Attributes</div>
-                <div class="table">
-                  <div class="attributes">
-                    <%= render partial: "attribute", 
-                    collection: type.attributes, 
-                    as: :attribute %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>

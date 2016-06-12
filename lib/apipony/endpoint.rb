@@ -18,7 +18,7 @@ class Apipony::Endpoint < Apipony::Base
 
   def initialize(method, url, &block)
     @method = method
-    @url = set_base_url(url)
+    @url = build_url(url)
 
     instance_eval(&block) if block_given?
   end
@@ -43,7 +43,7 @@ class Apipony::Endpoint < Apipony::Base
 
   private
 
-    def set_base_url(url)
-      File.join(Apipony::Documentation.base_url, url)
+    def build_url(url)
+      File.join(Apipony::Documentation.data.base_url, url)
     end
 end
