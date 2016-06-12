@@ -1,4 +1,4 @@
-class Apipony::Parameter < Apipony::Base
+class Apipony::Parameter
   attr_accessor :name, :type, :example, :required, :description
 
   def initialize(name, params = {})

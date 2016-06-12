@@ -1,7 +1,7 @@
 ##
 # Model a request that an API user can make.
 # Includes information about required parameters and required headers
-class Apipony::Request < Apipony::Base
+class Apipony::Request
   ##
   # :nodoc:
   attr_accessor :params

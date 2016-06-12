@@ -1,6 +1,6 @@
 ##
 # Model a response endpoint.
-class Apipony::Endpoint < Apipony::Base
+class Apipony::Endpoint
   ##
   # What HTTP verb to use to access this endpoint
   attr_accessor :method
