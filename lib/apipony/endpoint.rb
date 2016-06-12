@@ -12,8 +12,6 @@ class Apipony::Endpoint < Apipony::Base
   # A short description of what this endpoint does and why it may be useful.
   attr_accessor :description
 
-  ##
-  #:nodoc:
   attr_accessor :response, :request
 
   def initialize(method, url, &block)
@@ -35,10 +33,20 @@ class Apipony::Endpoint < Apipony::Base
     @request = Apipony::Request.new(&block)
   end
 
+  def description(value)
+    @description = value
+  end
+
   ##
   # Create a unique identifier for this endpoint
   def id
     File.join(@method.to_s, @url)
+  end
+
+  def data
+    OpenStruct.new(
+      description: @description
+    )
   end
 
   private
