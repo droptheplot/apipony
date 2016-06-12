@@ -11,6 +11,11 @@
         <% @documentation.sections.each do |section| %>
           <div class="section">
             <h2 id="<%= section.title %>"><%= section.title %></h2>
+            <% if section.data.description %>
+              <div class="description">
+                <%= section.data.description %>
+              </div>
+            <% end %>
             <% section.endpoints.each do |endpoint| %>
               <div class="endpoint" id="<%= endpoint.id %>">
                 <h3><%= render "method", endpoint: endpoint %></h3>
