@@ -6,246 +6,124 @@
 
 Ruby DSL to create Rails API documentation from your application.
 
-
-## Getting started
+## Getting Started
 * Add `gem 'apipony'` to Gemfile
 * `bundle install`
 * `rails g apipony:install`
-* Now you can edit your documentation in `config/initializers/apipony.rb`
-
-
-## How it works
-DSL example:
-
-```ruby
-Apipony::Documentation.define do
-  config do |c|
-    c.title = 'Apipony Documentation'
-    c.base_url = '/api/v1'
-  end
-
-  section 'Ponies' do
-    endpoint :get, '/ponies' do |e|
-      e.description = 'Find ponies'
-
-      request_with do
-        param :name, example: 'applejack', required: true
-      end
-
-      response_with 200 do
-        attribute :name, type: :string, example: 'applejack'
-        attribute :kind, type: :string, example: 'earth'
-        attribute :sex, type: :string, example: 'female'
-        attribute :occupation, type: :string, example: 'farmer'
-      end
-    end
-  end
-end
-```
-
-
-## Features
-
-### Response Attribute Documentation
-Apipony lets you provide further documentation about the attributes in your
-API's responses. Simply create a new `attribute` inside a `response_with` block.
-These attributes can even have nested sub-attributes, for documentation of
-more complex object graphs.
-
-```ruby
-Apipony::Documentation.define do
-  section "Species" do
-    endpoint 'get', '/species/:id' do |e|
-      e.description = "Get information about a species"
-      response_with 200 do
-        example do
-          set :body, {
-            name: "Unicorn",
-            is_pony: true,
-            biology: {
-              has_horn: true,
-              has_wings: false
-            }
-          }
-        end
-        attribute :name, type: :string
-        attribute :is_pony, type: :bool,
-          description: "Is this species a type of pony?"
-        attribute :biology do
-          attribute :has_horn, type: :bool
-          attribute :has_wings, type: :bool
-        end
-      end
-    end
-  end
-end
-```
-
-### Enum Attributes
-Your API may have some fields that can be picked from a pre-defined set of
-values. You can document those values by using an enum attribute.
-
-```ruby
-Apipony::Documentation.define do
-  section "Ponies" do
-    endpoint "get", "/ponies/:id" do |e|
-      e.description = "Information about a pony"
-      example do
-        set :body, {
-          name: "Applejack",
-          sex: "female",
-          kind: :earth,
-          occupation: :farmer
-        }
-      end
-
-      attribute :kind, type: :enum do
-        choice :earth, description: "A pony with no wings or horn"
-        choice :unicorn, description: "A pony with a horn"
-        choice :pegasus, description: "A pony with wings"
-        choice :alicorn,
-          description: "A pony with wings and a horn. Indicates royalty."
-      end
-    end
-  end
-end
-```
-
-### Example Generation
-When describing attributes, you can provide an optional `example:` parameter.
-If included, this will be used to generate the example response in the
-documentation.
-
-```ruby
-Apipony::Documentation.define do
-  section "Ponies" do
-    endpoint "get", "/ponies/:id" do |e|
-      response_with 200 do
-        attribute :name, type: :string, example: "Applejack"
-        # Enum members automatically select the first choice
-        attribute :kind, type: :enum do
-          choice :earth
-          choice :pegasus
-          choice :unicorn
-          choice :alicorn
-        end
-      end
-    end
-
-    endpoint "get", "/ponies/" do |e|
-      # Automatic serialization of arrays is supported
-      response_with 200, array: true do
-        attribute :name, type: :string, example: "Applejack"
-        attribute :id, type: :integer, example: 10
-      end
-    end
-  end
-end
-```
-
-`GET /ponies/:id` will now have the example of:
-
-```json
-{
-  "name": "Applejack",
-  "kind": "Earth"
-}
-```
-
-`GET /ponies/` will have the example of:
-
-```json
-[
-  {
-    "name": "Applejack",
-    "id": 10
-  }
-]
-```
-
-### Predefined Subtypes
-Sometimes, when building an API, it can be useful to store data in a common
-format. Apipony lets you define this common format once, then use it multiple
-times. Check it out:
-
-```ruby
-Apipony::Documentation.define do
-  subtype :pony_stub do
-    attribute :name, type: :string
-    attribute :id, type: :integer
-  end
-
-  section "Ponies" do
-    endpoint 'get', '/ponies/:id' do |e|
-      e.description = "Find a pony with a given name"
-      request_with do
-        params :id, example: 10, required: true
-      end
-
-      response_with 200 do
-        example do
-          set :body, {
-            :name => :applejack,
-            :type => :earth,
-            :sex => :female,
-            :occupation => :farmer,
-            :friends => [
-              {name: "Twilight Sparkle", id: 1},
-              {name: "Pinkie Pie", id: 2},
-              {name: "Rainbow Dash", id: 3},
-              {name: "Rarity", id: 4},
-              {name: "Fluttershy", id: 5}
-            ]
-          }
-        end
-      attribute :name, type: :string
-      attribute :kind, type: :enum do
-        choice :alicorn
-        choice :earth
-        choice :unicorn
-        choice :pegasus
-      end
-      attribute :friends, type: :pony_stub, array: true
-      attribute :occupation, type: :string
-    end
-  end
-
-  section "Locations" do
-    endpoint 'get', '/locations/:id' do |e|
-      e.description = "Information about a location"
-      response_with 200 do
-        example do
-          set :body, {
-            :name => "Crystal Empire",
-            :population => 107770,
-            :rulers => [
-              {
-                name: "Shining Armor",
-                id: 50
-              },
-              {
-                name: "Princess Cadence",
-                id: 90001
-              }
-            ]
-          }
-        end
-        attribute :name, type: :string
-        attribute :population, type: :integer
-        attribute :rulers, type: :pony_stub, array: true
-      end
-    end
-  end
-end
-```
-
-Now, the `friends` attribute of `GET /ponies/:id` and the `rulers` attribute of
-`GET /locations/:id` will reference a common subtype on the generated
-documentation.
-
-
-Generated documentation example:
+* Edit your documentation in `config/initializers/apipony.rb`
 
 ![Example](https://raw.githubusercontent.com/droptheplot/apipony/master/preview.png)
 
+## Example
+
+```ruby
+Apipony::Documentation.define do
+  configure do
+    title 'API Documentation'
+    base_url '/api/v1'
+  end
+
+  section 'Ponies' do
+    endpoint :get, '/ponies' do
+      description 'List ponies.'
+
+      request_with do
+        headers do
+          {
+            'Accept': 'application/json'
+          }
+        end
+
+        param :name, required: true, description: 'Name of pony.',
+                                     example: :fluttershy
+      end
+
+      response_with do
+        body do
+          [
+            {
+              name: 'Fluttershy',
+              kind: 'Pegasus'
+            }
+          ]
+        end
+      end
+    end
+
+    endpoint :post, '/ponies' do
+      description 'Create new pony.'
+
+      request_with do
+        param :name, required: true, example: :fluttershy
+        param :kind, example: :pegasus
+        param :sex, required: true, example: :female
+        param :occupation, example: :caretaker,
+                           description: 'What this pony do for living.'
+      end
+    end
+
+    endpoint :put, '/ponies/:id' do
+      description 'Update pony by id.'
+
+      request_with do
+        param :name
+        param :kind
+        param :sex
+        param :occupation
+      end
+    end
+
+    endpoint :delete, '/ponies/:id' do
+      description 'Delete pony by id.'
+    end
+  end
+
+  section 'Places' do
+    endpoint :get, '/places' do
+      description 'List places.'
+
+      response_with do
+        status 200
+
+        body do
+          [
+            {
+              name: 'Equestria'
+            },
+            {
+              name: 'Ponyville'
+            }
+          ]
+        end
+      end
+    end
+
+    endpoint :get, '/places/:id' do
+      response_with do
+        status 200
+
+        body do
+          {
+            name: 'Crystal Empire',
+            population: 107706
+          }
+        end
+      end
+    end
+  end
+end
+```
+
 By default documentation available here `/apipony`. But you can always change it in `config/routes.rb`.
+
+## Contributing
+
+1. Fork it (https://github.com/droptheplot/apipony/fork)
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
