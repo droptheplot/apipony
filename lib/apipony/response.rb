@@ -7,7 +7,7 @@ module Apipony
     def initialize(&block)
       @status = 200
 
-      instance_eval(&block)
+      instance_eval(&block) if block_given?
     end
 
     def status(code)

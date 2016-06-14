@@ -9,7 +9,7 @@ module Apipony
     def initialize(&block)
       @params = []
 
-      instance_eval(&block)
+      instance_eval(&block) if block_given?
     end
 
     # Construct a new parameter
