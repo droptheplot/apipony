@@ -10,11 +10,17 @@ module Apipony
       end
 
       def mount_engine
-        insert_into_file "#{Rails.root}/config/routes.rb", :after => /routes.draw.do\n/ do
-          %Q{  mount Apipony::Engine => '/apipony'
-}
+        insert_into_file routes_path, after: /routes.draw.do\n/ do
+          %(  mount Apipony::Engine => '/apipony'
+)
         end
       end
+
+      private
+
+        def routes_path
+          "#{Rails.root}/config/routes.rb"
+        end
     end
   end
 end

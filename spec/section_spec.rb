@@ -5,9 +5,11 @@ describe Apipony::Section do
     it 'adds new endpoint to section' do
       section.endpoint(:get, '/example')
 
-      expect(section.endpoints).to eq([
-        Apipony::Endpoint.new(:get, '/example')
-      ])
+      expect(section.endpoints).to eq(
+        [
+          Apipony::Endpoint.new(:get, '/example')
+        ]
+      )
     end
   end
 end

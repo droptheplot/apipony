@@ -1,6 +1,6 @@
 module Apipony
   class Parameter
-    OPTIONS = %i(name type example required description)
+    OPTIONS = %i(name type example required description).freeze
 
     attr_accessor(*OPTIONS)
 
@@ -12,7 +12,7 @@ module Apipony
       @required = options.fetch(:required, false)
     end
 
-    alias_method :required?, :required
+    alias required? required
 
     def ==(other)
       OPTIONS.all? do |option|

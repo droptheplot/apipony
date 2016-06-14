@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'spec/dummy/**/*'
+    - 'bin/**/*'
+Documentation:
+  Enabled: false
+Style/IndentationConsistency:
+  Enabled: false
+Style/PredicateName:
+  Enabled: false

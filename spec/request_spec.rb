@@ -5,9 +5,11 @@ describe Apipony::Request do
     it 'adds new parameter to @params array' do
       request.param(:name)
 
-      expect(request.data.params).to eq([
-        Apipony::Parameter.new(:name)
-      ])
+      expect(request.data.params).to eq(
+        [
+          Apipony::Parameter.new(:name)
+        ]
+      )
     end
   end
 end
