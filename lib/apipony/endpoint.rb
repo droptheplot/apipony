@@ -43,6 +43,10 @@ module Apipony
       )
     end
 
+    def ==(other)
+      method == other.method && url == other.url
+    end
+
     private
 
       def build_url(url)
