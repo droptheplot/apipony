@@ -1,58 +1,50 @@
 Apipony::Documentation.define do
-  config do |c|
-    c.title = 'API Documentation'
-    c.base_url = '/api/v1'
-  end
-
-  subtype :pony_stub do
-    attribute :name, type: :string, example: "Applejack"
-    attribute :id, type: :number, example: 10
+  configure do
+    title 'API Documentation'
+    base_url '/api/v1'
   end
 
   section 'Ponies' do
-    endpoint 'get', '/ponies' do |e|
-      e.description = 'Find ponies'
+    endpoint :get, '/ponies' do
+      description 'List ponies.'
 
       request_with do
-        param :name, example: :applejack, required: true
-      end
-
-      response_with 200 do
-        attribute :sex, description: "What sex is this pony?",
-          example: "Female"
-        attribute :name, description: "This pony's given name.",
-          example: "Twilight Sparkle"
-        attribute :occupation, description: %{
-          A short string describing what occupation this pony has.
-        }, example: "Princess"
-        attribute :kind do
-          choice :alicorn, description: %{
-            A pony with wings and a horn. This also indicates that the pony
-            is royalty of some sort.
+        headers do
+          {
+            'Accept': 'application/json'
           }
-          choice :unicorn, description: "A pony with a horn."
-          choice :earth, description: "A pony with no horn or wings."
-          choice :pegasus, description: "A pony with wings."      
         end
-        attribute :friends, array: true, type: :pony_stub
+
+        param :name, required: true, description: 'Name of pony.',
+                                     example: :fluttershy
+      end
+
+      response_with do
+        body do
+          [
+            {
+              name: 'Fluttershy',
+              kind: 'Pegasus'
+            }
+          ]
+        end
       end
     end
 
-    endpoint 'post', '/ponies' do |e|
-      e.description = 'Create pony'
+    endpoint :post, '/ponies' do
+      description 'Create new pony.'
 
       request_with do
-        param :name, example: :fluttershy
+        param :name, required: true, example: :fluttershy
         param :kind, example: :pegasus
-        param :sex, example: :female
-        param :occupation, example: :caretaker
+        param :sex, required: true, example: :female
+        param :occupation, example: :caretaker,
+                           description: 'What this pony do for living.'
       end
-
-      response_with 200
     end
 
-    endpoint 'put', '/ponies/:id' do |e|
-      e.description = 'Update pony by id'
+    endpoint :put, '/ponies/:id' do
+      description 'Update pony by id.'
 
       request_with do
         param :name
@@ -62,59 +54,41 @@ Apipony::Documentation.define do
       end
     end
 
-    endpoint 'delete', '/ponies/:id' do |e|
-      e.description = 'Delete pony by id'
-
-      response_with 200
+    endpoint :delete, '/ponies/:id' do
+      description 'Delete pony by id.'
     end
   end
 
   section 'Places' do
-    endpoint 'get', '/places' do |e|
-      e.description = 'Get places'
+    endpoint :get, '/places' do
+      description 'List places.'
 
-      response_with 200 do |r|
-        r.example do 
-        set :body, [
-          {
-            :id => 1,
-            :name => :equestria
-          },
-          {
-            :id => 2,
-            :name => :ponyville
-          },
-          {
-            :id => 3,
-            :name => :canterlot
-          }
-        ]
+      response_with do
+        status 200
+
+        body do
+          [
+            {
+              name: 'Equestria'
+            },
+            {
+              name: 'Ponyville'
+            }
+          ]
         end
       end
     end
 
-    endpoint 'get', '/places/:id' do |e|
-      e.description = "Info about a place"
-      response_with 200 do |r|
-        r.example do
-          set :body, {
-            name: "Crystal Empire",
-            population: 107706,
-            rulers: [
-              {
-                :id => 10,
-                :name => "Shining Armor"
-              },
-              {
-                :id => 100,
-                :name => "Princess Cadence"
-              }
-            ]
+    endpoint :get, '/places/:id' do
+      response_with do
+        status 200
+
+        body do
+          {
+            name: 'Crystal Empire',
+            population: 107706
           }
         end
-        attribute :name, type: :string
-        attribute :rulers, array: true, type: :pony_stub
-        attribute :population, type: :number
       end
     end
   end
