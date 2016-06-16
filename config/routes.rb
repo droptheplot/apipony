@@ -1,4 +1,5 @@
 Apipony::Engine.routes.draw do
-  get 'application/index'
-  root 'application#index'
+  root 'documentation#index'
+
+  get 'documentation/index'
 end
