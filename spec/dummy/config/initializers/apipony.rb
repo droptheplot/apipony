@@ -1,11 +1,11 @@
 Apipony::Documentation.define do
   configure do
     title 'API Documentation'
-    base_url '/api/v1'
+    base_url 'http://localhost:3000/api/v1'
   end
 
   section 'Ponies' do
-    endpoint :get, '/ponies' do
+    endpoint :get, 'ponies' do
       description 'List ponies.'
 
       request_with do
@@ -31,7 +31,7 @@ Apipony::Documentation.define do
       end
     end
 
-    endpoint :post, '/ponies' do
+    endpoint :post, 'ponies' do
       description 'Create new pony.'
 
       request_with do
@@ -43,7 +43,7 @@ Apipony::Documentation.define do
       end
     end
 
-    endpoint :put, '/ponies/:id' do
+    endpoint :put, 'ponies/:id' do
       description 'Update pony by id.'
 
       request_with do
@@ -54,13 +54,13 @@ Apipony::Documentation.define do
       end
     end
 
-    endpoint :delete, '/ponies/:id' do
+    endpoint :delete, 'ponies/:id' do
       description 'Delete pony by id.'
     end
   end
 
   section 'Places' do
-    endpoint :get, '/places' do
+    endpoint :get, 'places' do
       description 'List places.'
 
       response_with do
@@ -79,7 +79,7 @@ Apipony::Documentation.define do
       end
     end
 
-    endpoint :get, '/places/:id' do
+    endpoint :get, 'places/:id' do
       response_with do
         status 200
 

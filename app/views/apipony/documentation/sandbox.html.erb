@@ -1,0 +1,39 @@
+<%= render partial: "header" %>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="endpoint" id="<%= @endpoint.id %>">
+        <h3><%= render "method", endpoint: @endpoint %></h3>
+
+        <% if @endpoint.data.description %>
+          <div class="description">
+            <%= @endpoint.data.description %>
+          </div>
+        <% end %>
+
+        <% if @endpoint.request %>
+          <% if @endpoint.request.data.headers %>
+            <div class="panel">
+              <div class="title">Headers</div>
+              <pre class="code"><%= JSON.pretty_generate(@endpoint.request.data.headers) %></pre>
+            </div>
+          <% end %>
+
+          <% if @endpoint.request.data.params %>
+            <%= form_tag @endpoint.url, method: @endpoint.method, target: '_blank' do %>
+              <% @endpoint.request.data.params.each do |param| %>
+                <%= param.name %>
+                <%= text_field_tag param.name %>
+              <% end %>
+
+              <%= submit_tag 'Submit', name: nil %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%= render partial: "footer" %>

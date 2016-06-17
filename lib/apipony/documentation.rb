@@ -36,6 +36,10 @@ module Apipony
           base_url: @base_url
         )
       end
+
+      def endpoints
+        @sections.map { |section| section.endpoints }.flatten
+      end
     end
   end
 end

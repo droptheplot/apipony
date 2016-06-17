@@ -10,11 +10,14 @@ module Apipony
     # The URl of this endpoint
     attr_accessor :url
 
+    attr_accessor :path
+
     attr_accessor :response, :request
 
-    def initialize(method, url, &block)
-      @method = method
-      @url = build_url(url)
+    def initialize(method, path, &block)
+      @method = method.to_sym
+      @path = path
+      @url = build_url(@path)
 
       instance_eval(&block) if block_given?
     end
