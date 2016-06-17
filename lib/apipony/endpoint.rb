@@ -37,7 +37,11 @@ module Apipony
     ##
     # Create a unique identifier for this endpoint
     def id
-      File.join(@method.to_s, @url)
+      File.join(@method.to_s, @path)
+    end
+
+    def sandbox_path
+      File.join('sandbox', id)
     end
 
     def data

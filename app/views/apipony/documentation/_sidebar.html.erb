@@ -7,7 +7,7 @@
       <li>
         <h5>
           <%= link_to root_path(:anchor => endpoint.id) do %>
-            <span class="method <%= endpoint.method %>"><%= endpoint.method %></span><%= endpoint.url %>
+            <span class="method <%= endpoint.method %>"><%= endpoint.method %></span><%= endpoint.path %>
           <% end %>
         </h5>
       </li>
