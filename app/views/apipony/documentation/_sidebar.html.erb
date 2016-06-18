@@ -1,16 +1,12 @@
 <% @documentation.sections.each do |section| %>
-  <h4>
-    <%= link_to section.title, root_path(:anchor => section.title) %>
-  </h4>
-  <ul>
+  <h5 class="m-b-1">
+    <%= link_to section.title, root_path(:anchor => section.title), class: 'link' %>
+  </h5>
+  <div class="m-b-2">
     <% section.endpoints.each do |endpoint| %>
-      <li>
-        <h5>
-          <%= link_to root_path(:anchor => endpoint.id) do %>
-            <span class="method <%= endpoint.method %>"><%= endpoint.method %></span><%= endpoint.path %>
-          <% end %>
-        </h5>
-      </li>
+      <h6>
+        <%= render "method", endpoint: endpoint %>
+      </h6>
     <% end %>
-  </ul>
+  </div>
 <% end %>

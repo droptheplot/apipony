@@ -17,6 +17,18 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= yield %>
+    <%= render partial: "apipony/shared/header" %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 m-b-3">
+          <%= render partial: "sidebar" %>
+        </div>
+
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render partial: "apipony/shared/footer" %>
   </body>
 </html>

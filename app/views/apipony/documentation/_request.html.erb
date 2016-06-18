@@ -1,36 +1,38 @@
-<div class="request">
-  <h4>Request&#58;</h4>
+<div class="m-b-3">
+  <h5 class="m-b-1">Request</h4>
 
   <% if endpoint.request.data.headers %>
-    <div class="panel">
-      <div class="title">Headers</div>
-      <pre class="code"><%= JSON.pretty_generate(endpoint.request.data.headers) %></pre>
+    <div class="card">
+      <div class="card-header">Headers</div>
+      <pre class="code hljs json"><%= JSON.pretty_generate(endpoint.request.data.headers) %></pre>
     </div>
   <% end %>
 
   <% if endpoint.request.data.params %>
-    <div class="panel">
-      <div class="title">Parameters</div>
-      <table class="table">
+    <div class="card">
+      <div class="card-header">Parameters</div>
+      <table class="table m-b-0">
         <% endpoint.request.data.params.each do |param| %>
-          <tr class="parameter">
-            <td class="name">
+          <tr>
+            <td>
               <%= param.name %>
             </td>
-            <td class="type">
-              <%= param.type %>
+            <td>
+              <i class="text-muted">
+                <%= param.type %>
+              </i>
             </td>
-            <td class="required">
+            <td>
               <% if param.required %>
                 <i class="fa fa-check-square-o" title="Required"></i>
               <% else %>
                 <i class="fa fa-square-o" title="Optional"></i>
               <% end %>
             </td>
-            <td class="description">
+            <td>
               <%= param.description %>
               <% if param.example %>
-                <span class="example">
+                <span class="text-muted">
                   (example: <strong><%= param.example %></strong>)
                 </span>
               <% end %>

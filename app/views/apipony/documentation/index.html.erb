@@ -1,47 +1,36 @@
-<%= render partial: "header" %>
-
-<main>
-  <div class="container">
-    <div class="row">
-      <div class="sidebar">
-        <%= render partial: "sidebar" %>
+<% @documentation.sections.each do |section| %>
+  <div class="m-b-3">
+    <h2 class="m-b-2" id="<%= section.title %>"><%= section.title %></h2>
+    <% if section.data.description %>
+      <div class="text-muted">
+        <%= section.data.description %>
       </div>
+    <% end %>
+    <% section.endpoints.each do |endpoint| %>
+      <div class="m-b-2 p-t-1" id="<%= endpoint.id %>">
+        <h5 class="m-b-2">
+          <a href="<%= endpoint.sandbox_path %>" class="method">
+            <i class="fa fa-share"></i>
+          </a>
+          <%= render "method", endpoint: endpoint %>
+        </h5>
 
-      <div class="main-col">
-        <% @documentation.sections.each do |section| %>
-          <div class="section">
-            <h2 id="<%= section.title %>"><%= section.title %></h2>
-            <% if section.data.description %>
-              <div class="description">
-                <%= section.data.description %>
-              </div>
-            <% end %>
-            <% section.endpoints.each do |endpoint| %>
-              <div class="endpoint" id="<%= endpoint.id %>">
-                <h3><%= render "method", endpoint: endpoint %></h3>
-
-                <% if endpoint.data.description %>
-                  <div class="description">
-                    <%= endpoint.data.description %>
-                  </div>
-                <% end %>
-
-                <% if endpoint.request || endpoint.response %>
-                  <% if endpoint.request %>
-                    <%= render "request", endpoint: endpoint %>
-                  <% end %>
-
-                  <% if endpoint.response %>
-                    <%= render "response", response: endpoint.response %>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
+        <% if endpoint.data.description %>
+          <div class="text-muted m-b-2">
+            <%= endpoint.data.description %>
           </div>
         <% end %>
-      </div>
-    </div>
-  </div>
-</main>
 
-<%= render partial: "footer" %>
+        <% if endpoint.request || endpoint.response %>
+          <% if endpoint.request %>
+            <%= render "request", endpoint: endpoint %>
+          <% end %>
+
+          <% if endpoint.response %>
+            <%= render "response", response: endpoint.response %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

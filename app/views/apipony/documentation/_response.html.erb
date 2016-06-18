@@ -1,18 +1,17 @@
-<div class="response">
-  <h4>Response: <%= response.data.status %></h4>
+<div class="m-b-3">
+  <h5 class="m-b-1">Response <%= response.data.status %></h4>
   <% if response.data? %>
     <div class="response-example">
-      <%# This is kind of fancy for no reason but whatever %>
       <% if response.data.headers %>
-        <div class="panel">
-          <div class="title">Headers</div>
+        <div class="card">
+          <div class="card-header">Headers</div>
           <pre class="code hljs json"><%= JSON.pretty_generate(response.data.headers) %></pre>
         </div>
       <% end %>
 
       <% if response.data.body %>
-        <div class="panel">
-          <div class="title">Body</div>
+        <div class="card">
+          <div class="card-header">Body</div>
           <pre class="code hljs json"><%= JSON.pretty_generate(response.data.body) %></pre>
         </div>
       <% end %>

@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.2.4'
   s.add_dependency 'sass', '>= 3.4.19'
   s.add_dependency 'jquery-rails', '>= 4.0.4'
+  s.add_dependency 'bootstrap', '~> 4.0.0.alpha3'
+  s.add_dependency 'rails-assets-tether', '>= 1.1.0'
 
   s.add_development_dependency 'sqlite3', '~> 1.3.11'
   s.add_development_dependency 'yard'

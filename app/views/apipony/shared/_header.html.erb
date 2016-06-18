@@ -1,0 +1,17 @@
+<nav class="navbar navbar-full navbar-light p-y-1 m-b-3 header">
+  <div class="container">
+    <strong>
+      <%= link_to @documentation.data.title, root_path, class: 'navbar-brand' %>
+    </strong>
+    <ul class="nav navbar-nav pull-right">
+      <% if main_app.root_path %>
+        <li class="nav-item">
+          <%= link_to main_app.root_path, class: 'nav-link' do %>
+            <i class='fa fa-home'></i>
+            Home
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
