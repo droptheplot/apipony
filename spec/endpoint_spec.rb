@@ -18,7 +18,7 @@ describe Apipony::Endpoint do
 
   describe '#id' do
     it 'returns valid id' do
-      expect(endpoint.id).to eq('get/api/v1/example')
+      expect(endpoint.id).to eq('get/example')
     end
   end
 
