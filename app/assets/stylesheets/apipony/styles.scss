@@ -24,6 +24,11 @@ table {
       border-top: 0;
     }
   }
+  tr {
+    td:not(:last-child) {
+      width: 1%;
+    }
+  }
 }
 
 .card-header {
