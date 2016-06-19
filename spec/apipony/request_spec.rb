@@ -26,12 +26,4 @@ describe Apipony::Request do
       )
     end
   end
-
-  describe '#headers' do
-    it 'sets and returns @headers value' do
-      request.headers { :test }
-
-      expect(request.headers).to eq(:test)
-    end
-  end
 end

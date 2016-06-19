@@ -37,12 +37,4 @@ describe Apipony::Endpoint do
       expect(endpoint.request).to be_a(Apipony::Request)
     end
   end
-
-  describe '#description' do
-    it 'sets and returns @description value' do
-      endpoint.description('Example')
-
-      expect(endpoint.description).to eq('Example')
-    end
-  end
 end
