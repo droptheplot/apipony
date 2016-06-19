@@ -9,9 +9,11 @@
     <% section.endpoints.each do |endpoint| %>
       <div class="m-b-2 p-t-1" id="<%= endpoint.id %>">
         <h5 class="m-b-2">
-          <a href="<%= endpoint.sandbox_path %>" class="method">
-            <i class="fa fa-share"></i>
-          </a>
+          <% if @documentation.sandbox? %>
+            <a href="<%= endpoint.sandbox_path %>" class="method">
+              <i class="fa fa-share"></i>
+            </a>
+          <% end %>
           <%= render "method", endpoint: endpoint %>
         </h5>
 

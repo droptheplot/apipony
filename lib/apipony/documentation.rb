@@ -7,6 +7,7 @@ module Apipony
       def define(&block)
         @title = 'API Documentation'
         @sections = []
+        @sandbox = false
 
         instance_eval(&block)
       end
@@ -31,6 +32,13 @@ module Apipony
         @base_url = value if value
         @base_url
       end
+
+      def sandbox(value = false)
+        @sandbox = value if value
+        @sandbox
+      end
+
+      alias sandbox? sandbox
 
       def endpoints
         @sections.map { |section| section.endpoints }.flatten
