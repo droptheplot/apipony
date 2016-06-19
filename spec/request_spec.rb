@@ -5,11 +5,33 @@ describe Apipony::Request do
     it 'adds new parameter to @params array' do
       request.param(:name)
 
-      expect(request.data.params).to eq(
+      expect(request.params).to eq(
         [
           Apipony::Parameter.new(:name)
         ]
       )
+    end
+  end
+
+  describe '#params' do
+    it 'returns @params sorted by required' do
+      request.param(:name)
+      request.param(:age, required: true)
+
+      expect(request.params).to eq(
+        [
+          Apipony::Parameter.new(:age, required: true),
+          Apipony::Parameter.new(:name)
+        ]
+      )
+    end
+  end
+
+  describe '#headers' do
+    it 'sets and returns @headers value' do
+      request.headers { :test }
+
+      expect(request.headers).to eq(:test)
     end
   end
 end

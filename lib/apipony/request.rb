@@ -17,17 +17,8 @@ module Apipony
       @params << Apipony::Parameter.new(name, *params)
     end
 
-    def data
-      OpenStruct.new(
-        headers: @headers,
-        params: params
-      )
+    def params
+      @params.sort_by { |e| e.required? ? -1 : 0 }
     end
-
-    private
-
-      def params
-        @params.sort_by { |e| e.required? ? -1 : 0 }
-      end
   end
 end

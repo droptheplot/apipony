@@ -22,19 +22,14 @@ module Apipony
         instance_eval(&block)
       end
 
-      def title(value)
-        @title = value
+      def title(value = nil)
+        @title = value if value
+        @title
       end
 
-      def base_url(value)
-        @base_url = value
-      end
-
-      def data
-        OpenStruct.new(
-          title: @title,
-          base_url: @base_url
-        )
+      def base_url(value = nil)
+        @base_url = value if value
+        @base_url
       end
 
       def endpoints

@@ -1,9 +1,9 @@
 <% @documentation.sections.each do |section| %>
   <div class="m-b-3">
     <h2 class="m-b-2" id="<%= section.title %>"><%= section.title %></h2>
-    <% if section.data.description %>
+    <% if section.description %>
       <div class="text-muted">
-        <%= section.data.description %>
+        <%= section.description %>
       </div>
     <% end %>
     <% section.endpoints.each do |endpoint| %>
@@ -15,9 +15,9 @@
           <%= render "method", endpoint: endpoint %>
         </h5>
 
-        <% if endpoint.data.description %>
+        <% if endpoint.description %>
           <div class="text-muted m-b-2">
-            <%= endpoint.data.description %>
+            <%= endpoint.description %>
           </div>
         <% end %>
 

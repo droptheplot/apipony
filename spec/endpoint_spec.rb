@@ -22,16 +22,6 @@ describe Apipony::Endpoint do
     end
   end
 
-  describe '#data' do
-    it 'returns valid data object' do
-      endpoint.description 'Example'
-
-      expect(endpoint.data).to eq(
-        OpenStruct.new(description: 'Example')
-      )
-    end
-  end
-
   describe '#response_with' do
     it 'adds response instance to endpoint' do
       endpoint.response_with {}
@@ -45,6 +35,14 @@ describe Apipony::Endpoint do
       endpoint.request_with {}
 
       expect(endpoint.request).to be_a(Apipony::Request)
+    end
+  end
+
+  describe '#description' do
+    it 'sets and returns @description value' do
+      endpoint.description('Example')
+
+      expect(endpoint.description).to eq('Example')
     end
   end
 end

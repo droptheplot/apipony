@@ -44,12 +44,6 @@ module Apipony
       File.join('sandbox', id)
     end
 
-    def data
-      OpenStruct.new(
-        description: @description
-      )
-    end
-
     def ==(other)
       method == other.method && url == other.url
     end
@@ -57,7 +51,7 @@ module Apipony
     private
 
       def build_url(url)
-        File.join(Apipony::Documentation.data.base_url, url)
+        File.join(Apipony::Documentation.base_url, url)
       end
   end
 end

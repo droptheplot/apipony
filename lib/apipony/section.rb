@@ -21,11 +21,5 @@ module Apipony
     def endpoint(method, url, &block)
       @endpoints << Apipony::Endpoint.new(method, url, &block)
     end
-
-    def data
-      OpenStruct.new(
-        description: @description
-      )
-    end
   end
 end

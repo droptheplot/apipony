@@ -2,10 +2,10 @@ describe Apipony::Response do
   let(:response) { Apipony::Response.new }
 
   describe '#body' do
-    it 'adds block result to @body variable' do
+    it 'sets and returns block to @body variable' do
       response.body { :example }
 
-      expect(response.data.body).to eq(:example)
+      expect(response.body).to eq(:example)
     end
   end
 end

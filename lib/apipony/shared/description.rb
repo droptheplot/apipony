@@ -3,8 +3,9 @@ module Apipony
     module Description
       attr_accessor :description
 
-      def description(value)
-        @description = value
+      def description(value = nil)
+        @description = value if value
+        @description
       end
     end
   end

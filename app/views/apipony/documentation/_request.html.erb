@@ -1,18 +1,18 @@
 <div class="m-b-3">
   <h5 class="m-b-1">Request</h4>
 
-  <% if endpoint.request.data.headers %>
+  <% if endpoint.request.headers %>
     <div class="card">
       <div class="card-header">Headers</div>
-      <pre class="code hljs json"><%= JSON.pretty_generate(endpoint.request.data.headers) %></pre>
+      <pre class="code hljs json"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
     </div>
   <% end %>
 
-  <% if endpoint.request.data.params %>
+  <% if endpoint.request.params %>
     <div class="card">
       <div class="card-header">Parameters</div>
       <table class="table m-b-0">
-        <% endpoint.request.data.params.each do |param| %>
+        <% endpoint.request.params.each do |param| %>
           <tr>
             <td>
               <%= param.name %>

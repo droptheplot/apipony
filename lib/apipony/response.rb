@@ -10,24 +10,18 @@ module Apipony
       instance_eval(&block) if block_given?
     end
 
-    def status(code)
-      @status = code if code
+    def status(value = nil)
+      @status = value if value
+      @status
     end
 
     def body
       @body = yield if block_given?
+      @body
     end
 
     def data?
       !(@status.nil? && @body.nil?)
-    end
-
-    def data
-      OpenStruct.new(
-        status: @status,
-        headers: @headers,
-        body: @body
-      )
     end
   end
 end
