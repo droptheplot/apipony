@@ -7,7 +7,9 @@ module Apipony
 
     def sandbox
       lookup_endpoint = Apipony::Endpoint.new(params[:method], params[:url])
-      @endpoint = @documentation.endpoints.find { |endpoint| endpoint == lookup_endpoint }
+      @endpoint = @documentation.endpoints.find do |endpoint|
+        endpoint == lookup_endpoint
+      end
     end
 
     private

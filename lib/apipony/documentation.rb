@@ -41,7 +41,7 @@ module Apipony
       alias sandbox? sandbox
 
       def endpoints
-        @sections.map { |section| section.endpoints }.flatten
+        @sections.map(&:endpoints).flatten
       end
     end
   end
