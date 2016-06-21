@@ -11,7 +11,7 @@ Apipony::Documentation.define do
       request_with do
         headers do
           {
-            'Accept': 'application/json'
+            'Accept' => 'application/json'
           }
         end
 
