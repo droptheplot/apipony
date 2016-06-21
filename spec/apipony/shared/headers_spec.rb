@@ -4,11 +4,17 @@ describe Apipony::Shared::Headers do
     @dummy.extend(Apipony::Shared::Headers)
   end
 
+  let(:example) do
+    {
+      'Key' => 'Value'
+    }
+  end
+
   describe '#headers' do
     it 'sets and returns @headers value' do
-      @dummy.headers { :example }
+      @dummy.headers { example }
 
-      expect(@dummy.headers).to eq(:example)
+      expect(@dummy.headers).to eq(example)
     end
   end
 end
