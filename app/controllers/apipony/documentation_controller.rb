@@ -5,7 +5,7 @@ module Apipony
     def index
     end
 
-    def sandbox
+    def console
       lookup_endpoint = Apipony::Endpoint.new(params[:method], params[:url])
       @endpoint = @documentation.endpoints.find do |endpoint|
         endpoint == lookup_endpoint

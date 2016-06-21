@@ -40,8 +40,8 @@ module Apipony
       File.join(@method.to_s, @path)
     end
 
-    def sandbox_path
-      File.join('sandbox', id)
+    def console_path
+      File.join('console', id)
     end
 
     def ==(other)

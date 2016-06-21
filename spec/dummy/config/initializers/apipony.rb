@@ -2,7 +2,7 @@ Apipony::Documentation.define do
   configure do
     title 'API Documentation'
     base_url 'http://localhost:3000/api/v1'
-    sandbox true
+    console true
   end
 
   section 'Ponies' do

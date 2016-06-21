@@ -1,5 +1,5 @@
 Apipony::Engine.routes.draw do
   root 'documentation#index'
 
-  get 'sandbox/:method/*url' => 'documentation#sandbox'
+  get 'console/:method/*url' => 'documentation#console'
 end
