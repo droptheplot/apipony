@@ -11,6 +11,7 @@ Ruby DSL to create Rails API documentation from your application.
 * `bundle install`
 * `rails g apipony:install`
 * Edit your documentation in `config/initializers/apipony.rb`
+* By default documentation will be available at `/apipony`.
 
 ![Example](https://raw.githubusercontent.com/droptheplot/apipony/master/preview.png)
 
@@ -121,7 +122,22 @@ Apipony::Documentation.define do
 end
 ```
 
-By default documentation available here `/apipony`. But you can always change it in `config/routes.rb`.
+## DSL Structure
+
+* configure(&block)
+  * title(value)
+  * base_url(value)
+* section(&block)
+  * description(value)
+  * endpoint(method, path, &block)
+    * description(value)
+    * request_with(&block)
+      * headers(&block)
+      * param(name, *options)
+    * response_with
+      * status(value)
+      * headers(&block)
+      * body(&block)
 
 ## Contributing
 
