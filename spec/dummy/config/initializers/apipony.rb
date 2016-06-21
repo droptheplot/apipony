@@ -23,7 +23,7 @@ Apipony::Documentation.define do
       response_with do
         headers do
           [
-            ['Apipony', true]
+            [:apipony, true]
           ]
         end
 
