@@ -5,7 +5,7 @@ module Apipony
 
       def headers
         @headers = yield if block_given?
-        @headers
+        @headers.to_h.transform_values(&:to_s)
       end
     end
   end

@@ -21,6 +21,12 @@ Apipony::Documentation.define do
       end
 
       response_with do
+        headers do
+          [
+            ['Apipony', true]
+          ]
+        end
+
         body do
           [
             {
