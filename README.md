@@ -20,7 +20,8 @@ Ruby DSL to create Rails API documentation from your application.
 Apipony::Documentation.define do
   configure do
     title 'API Documentation'
-    base_url '/api/v1'
+    base_url 'http://localhost:3000/api/v1'
+    console true
   end
 
   section 'Ponies' do
@@ -30,7 +31,7 @@ Apipony::Documentation.define do
       request_with do
         headers do
           {
-            'Accept': 'application/json'
+            'Accept' => 'application/json'
           }
         end
 
@@ -39,6 +40,12 @@ Apipony::Documentation.define do
       end
 
       response_with do
+        headers do
+          [
+            [:apipony, true]
+          ]
+        end
+
         body do
           [
             {
