@@ -9,6 +9,7 @@ require 'factory_girl_rails'
 require 'database_cleaner'
 require 'faker'
 require 'bootstrap'
+require 'react-rails'
 
 require 'apipony'
 
