@@ -20,18 +20,7 @@
         <% end %>
 
         <div class="m-t-3">
-          <%= form_tag @endpoint.url, method: @endpoint.method, target: '_blank' do %>
-            <% @endpoint.request.params.each do |param| %>
-              <div class="form-group">
-                <label><%= param.name.to_s.titleize %></label>
-                <%= text_field_tag param.name, param.example, class: 'form-control' %>
-              </div>
-            <% end %>
-
-            <div class="form-group">
-              <%= submit_tag 'Submit', name: nil, class: 'btn btn-primary' %>
-            </div>
-          <% end %>
+          <%= react_component 'Console', url: @endpoint.url, method: @endpoint.method, params: @endpoint.request.params %>
         </div>
       <% end %>
     </div>
