@@ -1,28 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="endpoint" id="<%= @endpoint.id %>">
-      <h5 class="m-b-1">
-        <%= render "method", endpoint: @endpoint %>
+    <div class="col-md-6">
+      <%= render 'endpoint', endpoint: @endpoint %>
+    </div>
+    <div class="col-md-6">
+      <h5 class="m-b-2">
+        Console
       </h5>
-
-      <% if @endpoint.description %>
-        <div class="text-muted m-b-2">
-          <%= @endpoint.description %>
-        </div>
-      <% end %>
-
-      <% if @endpoint.request %>
-        <% if @endpoint.request.headers %>
-          <div class="card">
-            <div class="card-header">Headers</div>
-            <pre class="code hljs json"><%= JSON.pretty_generate(@endpoint.request.headers) %></pre>
-          </div>
-        <% end %>
-
-        <div class="m-t-3">
-          <%= react_component 'Console', url: @endpoint.url, method: @endpoint.method, params: @endpoint.request.params %>
-        </div>
-      <% end %>
+      <%= react_component 'Console', url: @endpoint.url, method: @endpoint.method, params: @endpoint.request.params %>
     </div>
   </div>
 </div>

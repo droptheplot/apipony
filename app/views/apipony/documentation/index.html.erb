@@ -8,30 +8,7 @@
     <% end %>
     <% section.endpoints.each do |endpoint| %>
       <div class="m-b-2 p-t-1" id="<%= endpoint.id %>">
-        <h5 class="m-b-2">
-          <% if @documentation.console? %>
-            <a href="<%= endpoint.console_path %>" class="method">
-              <i class="fa fa-share"></i>
-            </a>
-          <% end %>
-          <%= render "method", endpoint: endpoint %>
-        </h5>
-
-        <% if endpoint.description %>
-          <div class="text-muted m-b-2">
-            <%= endpoint.description %>
-          </div>
-        <% end %>
-
-        <% if endpoint.request || endpoint.response %>
-          <% if endpoint.request %>
-            <%= render "request", endpoint: endpoint %>
-          <% end %>
-
-          <% if endpoint.response %>
-            <%= render "response", response: endpoint.response %>
-          <% end %>
-        <% end %>
+        <%= render 'endpoint', endpoint: endpoint %>
       </div>
     <% end %>
   </div>

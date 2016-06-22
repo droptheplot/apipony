@@ -1,0 +1,22 @@
+<h5 class="m-b-2">
+  <a href="<%= endpoint.console_path %>" class="method">
+    <i class="fa fa-terminal"></i>
+  </a>
+  <%= render "method", endpoint: endpoint %>
+</h5>
+
+<% if endpoint.description %>
+  <div class="text-muted m-b-2">
+    <%= endpoint.description %>
+  </div>
+<% end %>
+
+<% if endpoint.request || endpoint.response %>
+  <% if endpoint.request %>
+    <%= render "request", endpoint: endpoint %>
+  <% end %>
+
+  <% if endpoint.response %>
+    <%= render "response", response: endpoint.response %>
+  <% end %>
+<% end %>
