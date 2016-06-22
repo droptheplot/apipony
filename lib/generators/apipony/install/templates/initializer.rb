@@ -15,8 +15,9 @@ Apipony::Documentation.define do
           }
         end
 
-        param :name, required: true, description: 'Name of pony.',
-                                     example: :fluttershy
+        param :name, required: true,
+                     description: 'Name of pony.',
+                     example: :fluttershy
       end
 
       response_with do
@@ -86,7 +87,7 @@ Apipony::Documentation.define do
         body do
           {
             name: 'Crystal Empire',
-            population: 107706
+            population: 107_706
           }
         end
       end

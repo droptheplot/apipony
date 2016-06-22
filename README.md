@@ -36,8 +36,9 @@ Apipony::Documentation.define do
           }
         end
 
-        param :name, required: true, description: 'Name of pony.',
-                                     example: :fluttershy
+        param :name, required: true,
+                     description: 'Name of pony.',
+                     example: :fluttershy
       end
 
       response_with do
