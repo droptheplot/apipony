@@ -1,7 +1,7 @@
 <div class="m-b-3">
   <h5 class="m-b-1">Request</h4>
 
-  <% if endpoint.request.headers %>
+  <% if endpoint.request.headers.present? %>
     <div class="card">
       <div class="card-header">Headers</div>
       <pre class="code hljs json"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
