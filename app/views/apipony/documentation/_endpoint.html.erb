@@ -11,12 +11,10 @@
   </div>
 <% end %>
 
-<% if endpoint.request || endpoint.response %>
-  <% if endpoint.request %>
-    <%= render "request", endpoint: endpoint %>
-  <% end %>
+<% if endpoint.request? %>
+  <%= render "request", endpoint: endpoint %>
+<% end %>
 
-  <% if endpoint.response %>
-    <%= render "response", response: endpoint.response %>
-  <% end %>
+<% if endpoint.response? %>
+  <%= render "response", response: endpoint.response %>
 <% end %>
