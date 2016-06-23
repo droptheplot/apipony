@@ -20,5 +20,9 @@ module Apipony
     def params
       @params.sort_by { |e| e.required? ? -1 : 0 }
     end
+
+    def params?
+      @params.present?
+    end
   end
 end
