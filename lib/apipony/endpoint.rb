@@ -18,20 +18,28 @@ module Apipony
       @method = method.to_sym
       @path = path
       @url = build_url(@path)
+      @request = NilRequest.new
+      @response = NilResponse.new
 
       instance_eval(&block) if block_given?
     end
 
-    ##
     # DSL method to start describing a response
     def response_with(&block)
       @response = Apipony::Response.new(&block)
     end
 
-    ##
+    def response?
+      @response.instance_of?(Apipony::Response)
+    end
+
     # DSL method to start describind a request
     def request_with(&block)
       @request = Apipony::Request.new(&block)
+    end
+
+    def request?
+      @request.instance_of?(Apipony::Request)
     end
 
     ##
