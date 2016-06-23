@@ -1,14 +1,14 @@
 <div class="m-b-3">
   <h5 class="m-b-1">Request</h4>
 
-  <% if endpoint.request.headers.present? %>
+  <% if endpoint.request.headers? %>
     <div class="card">
       <div class="card-header">Headers</div>
       <pre class="code hljs json"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
     </div>
   <% end %>
 
-  <% if endpoint.request.params %>
+  <% if endpoint.request.params? %>
     <div class="card">
       <div class="card-header">Parameters</div>
       <table class="table m-b-0">
