@@ -6,6 +6,7 @@
     <% section.endpoints.each do |endpoint| %>
       <h6>
         <%= render "method", endpoint: endpoint %>
+        <%= link_to endpoint.path, root_path(:anchor => endpoint.id), class: 'link' %>
       </h6>
     <% end %>
   </div>

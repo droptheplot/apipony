@@ -1,8 +1,6 @@
 <h5 class="m-b-2">
-  <a href="<%= endpoint.console_path %>" class="method">
-    <i class="fa fa-terminal"></i>
-  </a>
   <%= render "method", endpoint: endpoint %>
+  <%= link_to endpoint.path, endpoint.console_path, class: 'link' %>
 </h5>
 
 <% if endpoint.description %>
